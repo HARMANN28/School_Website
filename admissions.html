@@ -656,6 +656,27 @@
         .form-group.error .error-message {
             display: block;
         }
+        
+        .error-banner {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #d32f2f;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s;
+            max-width: 90%;
+            text-align: center;
+        }
+        
+        .error-banner.show {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -671,6 +692,9 @@
         <p>Your inquiry has been submitted successfully. Our admissions team will contact you shortly.</p>
         <button class="submit-btn" id="closeMessage" style="margin-top: 2rem;">Continue Exploring</button>
     </div>
+    
+    <!-- Error banner -->
+    <div class="error-banner" id="errorBanner"></div>
 
     <header>
         <div class="container">
@@ -751,14 +775,14 @@
                             <div class="form-group">
                                 <label for="student-name">Student's Full Name</label>
                                 <input type="text" id="student-name" placeholder="e.g., Priya Sharma" required>
-                                <div class="error-message" id="student-name-error"></div>
+                                <div class="error-message" id="student-name-error">Please enter student's name</div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="dob">Date of Birth</label>
                                     <input type="date" id="dob" required>
-                                    <div class="error-message" id="dob-error"></div>
+                                    <div class="error-message" id="dob-error">Please select date of birth</div>
                                 </div>
                                 
                                 <div class="form-group">
@@ -769,7 +793,7 @@
                                         <option value="male">Male</option>
                                         <option value="other">Other</option>
                                     </select>
-                                    <div class="error-message" id="gender-error"></div>
+                                    <div class="error-message" id="gender-error">Please select gender</div>
                                 </div>
                             </div>
                             
@@ -792,26 +816,26 @@
                                     <option value="11">Grade 11</option>
                                     <option value="12">Grade 12</option>
                                 </select>
-                                <div class="error-message" id="grade-error"></div>
+                                <div class="error-message" id="grade-error">Please select grade</div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="parent-name">Parent/Guardian Full Name(s)</label>
                                 <input type="text" id="parent-name" placeholder="e.g., Rajesh & Sunita Sharma" required>
-                                <div class="error-message" id="parent-name-error"></div>
+                                <div class="error-message" id="parent-name-error">Please enter parent/guardian name</div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="phone">Contact Number</label>
                                     <input type="tel" id="phone" placeholder="(123) 456-7890" required>
-                                    <div class="error-message" id="phone-error"></div>
+                                    <div class="error-message" id="phone-error">Please enter a valid phone number</div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="email">Email Address</label>
                                     <input type="email" id="email" placeholder="your.email@example.com" required>
-                                    <div class="error-message" id="email-error"></div>
+                                    <div class="error-message" id="email-error">Please enter a valid email</div>
                                 </div>
                             </div>
                             
@@ -930,6 +954,62 @@
             // Form submission
             const form = document.getElementById('admissionForm');
             const submitBtn = document.getElementById('submitBtn');
+            const errorBanner = document.getElementById('errorBanner');
+            
+            // Show error banner
+            function showError(message) {
+                errorBanner.textContent = message;
+                errorBanner.classList.add('show');
+                
+                // Hide after 5 seconds
+                setTimeout(() => {
+                    errorBanner.classList.remove('show');
+                }, 5000);
+            }
+            
+            // Form validation
+            function validateForm() {
+                let isValid = true;
+                const requiredFields = [
+                    'student-name', 'dob', 'gender', 'grade', 
+                    'parent-name', 'phone', 'email'
+                ];
+                
+                // Reset errors
+                requiredFields.forEach(fieldId => {
+                    const formGroup = document.getElementById(fieldId).closest('.form-group');
+                    formGroup.classList.remove('error');
+                });
+                
+                // Check required fields
+                requiredFields.forEach(fieldId => {
+                    const field = document.getElementById(fieldId);
+                    if (!field.value.trim()) {
+                        field.closest('.form-group').classList.add('error');
+                        isValid = false;
+                    }
+                });
+                
+                // Validate email
+                const email = document.getElementById('email').value;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (email && !emailRegex.test(email)) {
+                    document.getElementById('email').closest('.form-group').classList.add('error');
+                    document.getElementById('email-error').textContent = 'Please enter a valid email address';
+                    isValid = false;
+                }
+                
+                // Validate phone
+                const phone = document.getElementById('phone').value;
+                const phoneRegex = /^[0-9]{10}$/;
+                if (phone && !phoneRegex.test(phone.replace(/\D/g, ''))) {
+                    document.getElementById('phone').closest('.form-group').classList.add('error');
+                    document.getElementById('phone-error').textContent = 'Please enter a valid 10-digit phone number';
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
             
             if (form) {
                 form.addEventListener('submit', async (e) => {
@@ -942,6 +1022,7 @@
                     
                     // Validate form
                     if (!validateForm()) {
+                        showError('Please fill all required fields correctly');
                         return;
                     }
                     
@@ -954,7 +1035,8 @@
                         parentName: document.getElementById('parent-name').value.trim(),
                         phone: document.getElementById('phone').value.trim(),
                         email: document.getElementById('email').value.trim(),
-                        message: document.getElementById('message').value.trim()
+                        message: document.getElementById('message').value.trim(),
+                        timestamp: new Date().toISOString()
                     };
                     
                     // Show loading state
@@ -962,15 +1044,13 @@
                     submitBtn.disabled = true;
                     
                     try {
-                        // Your deployed script URL
-                        const scriptUrl = 'https://script.google.com/macros/s/AKfycbxArX2UG3y07XxKvHFLg01YUm8YdkybSw1wlfN-J9fQpFKygCgvqjb29mmdlgQH6eHD/exec';
+                        // Deployed Google Apps Script URL (replace with your own after deployment)
+                        const scriptUrl = 'https://script.google.com/macros/s/AKfycbxnrpQpFgV3DxgbBmkYNla-XdalYtaiQ4POQQqM7YZvjkwl6-Cikt0mbfvAZsrhzBNc/exec';
                         
                         // Send data to Google Apps Script
                         const response = await fetch(scriptUrl, {
                             method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
+                            headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(formData)
                         });
                         
@@ -994,65 +1074,9 @@
                 });
             }
             
-            // Form validation function
-            function validateForm() {
-                let isValid = true;
-                
-                // Validate each required field
-                const requiredFields = [
-                    'student-name', 'dob', 'gender', 'grade', 
-                    'parent-name', 'phone', 'email'
-                ];
-                
-                requiredFields.forEach(fieldId => {
-                    const field = document.getElementById(fieldId);
-                    const errorElement = document.getElementById(`${fieldId}-error`);
-                    const formGroup = field.closest('.form-group');
-                    
-                    if (!field.value.trim()) {
-                        formGroup.classList.add('error');
-                        errorElement.textContent = 'This field is required';
-                        isValid = false;
-                    } else {
-                        formGroup.classList.remove('error');
-                        errorElement.textContent = '';
-                        
-                        // Additional validation for specific fields
-                        if (fieldId === 'email' && !isValidEmail(field.value)) {
-                            formGroup.classList.add('error');
-                            errorElement.textContent = 'Please enter a valid email address';
-                            isValid = false;
-                        }
-                        
-                        if (fieldId === 'phone' && !isValidPhone(field.value)) {
-                            formGroup.classList.add('error');
-                            errorElement.textContent = 'Please enter a valid phone number';
-                            isValid = false;
-                        }
-                    }
-                });
-                
-                return isValid;
-            }
-            
-            function isValidEmail(email) {
-                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-            }
-            
-            function isValidPhone(phone) {
-                // Simple validation - at least 6 digits
-                return phone.replace(/\D/g, '').length >= 6;
-            }
-            
-            function showError(message) {
-                // You could create a more sophisticated error display
-                alert(message);
-            }
-            
             // Close success message
             document.getElementById('closeMessage').addEventListener('click', () => {
                 document.getElementById('successMessage').classList.remove('show');
-                form.reset();
             });
             
             // Header scroll effect
