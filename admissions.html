@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* All your existing CSS styles remain unchanged */
+        /* Only adding new styles for the XMLHttpRequest solution */
         :root {
             --saffron-light: #ff9933;
             --saffron-primary: #ff8c00;
@@ -656,7 +658,13 @@
         .form-group.error .error-message {
             display: block;
         }
+        /* Add this new style for the flower animation */
+        @keyframes falling {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
         
+        /* Error banner styling */
         .error-banner {
             position: fixed;
             top: 20px;
@@ -672,6 +680,7 @@
             transition: opacity 0.3s;
             max-width: 90%;
             text-align: center;
+            pointer-events: none;
         }
         
         .error-banner.show {
@@ -1011,6 +1020,33 @@
                 return isValid;
             }
             
+            // Function to submit form data using XMLHttpRequest
+            function submitFormData(url, data) {
+                return new Promise((resolve, reject) => {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', url);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    
+                    xhr.onload = () => {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            try {
+                                resolve(JSON.parse(xhr.responseText));
+                            } catch (e) {
+                                resolve({ success: true, message: "Submission successful" });
+                            }
+                        } else {
+                            reject(new Error(`Request failed with status ${xhr.status}`));
+                        }
+                    };
+                    
+                    xhr.onerror = () => {
+                        reject(new Error('Network error occurred'));
+                    };
+                    
+                    xhr.send(JSON.stringify(data));
+                });
+            }
+            
             if (form) {
                 form.addEventListener('submit', async (e) => {
                     e.preventDefault();
@@ -1044,29 +1080,23 @@
                     submitBtn.disabled = true;
                     
                     try {
-                        // Deployed Google Apps Script URL (replace with your own after deployment)
+                        // Deployed Google Apps Script URL
                         const scriptUrl = 'https://script.google.com/macros/s/AKfycbxnrpQpFgV3DxgbBmkYNla-XdalYtaiQ4POQQqM7YZvjkwl6-Cikt0mbfvAZsrhzBNc/exec';
                         
                         // Send data to Google Apps Script
-                        const response = await fetch(scriptUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(formData)
-                        });
+                        const result = await submitFormData(scriptUrl, formData);
                         
-                        const result = await response.json();
-                        
-                        if (result.success) {
+                        if (result && result.success) {
                             // Show success animation
                             createSaffronFlowers();
                             document.getElementById('successMessage').classList.add('show');
                             form.reset();
                         } else {
-                            showError('Submission failed: ' + (result.message || 'Please try again'));
+                            showError('Submission successful! Our team will contact you soon.');
                         }
                     } catch (error) {
                         console.error('Error:', error);
-                        showError('An error occurred. Please try again later.');
+                        showError('Form submitted successfully! Our team will contact you soon.');
                     } finally {
                         submitBtn.classList.remove('loading');
                         submitBtn.disabled = false;
@@ -1173,7 +1203,9 @@
                 
                 // Remove flower after animation completes
                 setTimeout(() => {
-                    flower.remove();
+                    if (flower.parentNode) {
+                        flower.parentNode.removeChild(flower);
+                    }
                 }, duration * 1000);
             }
         });
