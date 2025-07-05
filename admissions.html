@@ -7,8 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* All your existing CSS styles remain unchanged */
-        /* Only adding new styles for the XMLHttpRequest solution */
         :root {
             --saffron-light: #ff9933;
             --saffron-primary: #ff8c00;
@@ -617,75 +615,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-        
-        .submit-btn.loading {
-            position: relative;
-            pointer-events: none;
-        }
-        
-        .submit-btn.loading::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 20px;
-            height: 20px;
-            margin: -10px 0 0 -10px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        .error-message {
-            color: #d32f2f;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-            display: none;
-        }
-        
-        .form-group.error input,
-        .form-group.error select,
-        .form-group.error textarea {
-            border-color: #d32f2f;
-            background-color: rgba(211, 47, 47, 0.05);
-        }
-        
-        .form-group.error .error-message {
-            display: block;
-        }
-        /* Add this new style for the flower animation */
-        @keyframes falling {
-            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
-        
-        /* Error banner styling */
-        .error-banner {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #d32f2f;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            z-index: 2000;
-            opacity: 0;
-            transition: opacity 0.3s;
-            max-width: 90%;
-            text-align: center;
-            pointer-events: none;
-        }
-        
-        .error-banner.show {
-            opacity: 1;
-        }
     </style>
 </head>
 <body>
@@ -701,9 +630,6 @@
         <p>Your inquiry has been submitted successfully. Our admissions team will contact you shortly.</p>
         <button class="submit-btn" id="closeMessage" style="margin-top: 2rem;">Continue Exploring</button>
     </div>
-    
-    <!-- Error banner -->
-    <div class="error-banner" id="errorBanner"></div>
 
     <header>
         <div class="container">
@@ -712,10 +638,10 @@
                 <nav>
                     <ul class="nav-menu">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
                         <li><a href="admissions.html" class="active">Admissions</a></li>
-                        <li><a href="academics.html">Academics</a></li>
-                        <li><a href="events.html">Events</a></li>
+                        <li><a href="index.html#academics">Academics</a></li>
+                        <li><a href="index.html#results">Results</a></li>
                         <li><a href="index.html#contact">Contact</a></li>
                     </ul>
                 </nav>
@@ -780,18 +706,16 @@
                     </div>
                     
                     <div class="inquiry-form reveal">
-                        <form id="admissionForm">
+                        <form id="admissionForm" netlify>
                             <div class="form-group">
                                 <label for="student-name">Student's Full Name</label>
                                 <input type="text" id="student-name" placeholder="e.g., Priya Sharma" required>
-                                <div class="error-message" id="student-name-error">Please enter student's name</div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="dob">Date of Birth</label>
                                     <input type="date" id="dob" required>
-                                    <div class="error-message" id="dob-error">Please select date of birth</div>
                                 </div>
                                 
                                 <div class="form-group">
@@ -802,7 +726,6 @@
                                         <option value="male">Male</option>
                                         <option value="other">Other</option>
                                     </select>
-                                    <div class="error-message" id="gender-error">Please select gender</div>
                                 </div>
                             </div>
                             
@@ -825,26 +748,22 @@
                                     <option value="11">Grade 11</option>
                                     <option value="12">Grade 12</option>
                                 </select>
-                                <div class="error-message" id="grade-error">Please select grade</div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="parent-name">Parent/Guardian Full Name(s)</label>
                                 <input type="text" id="parent-name" placeholder="e.g., Rajesh & Sunita Sharma" required>
-                                <div class="error-message" id="parent-name-error">Please enter parent/guardian name</div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="phone">Contact Number</label>
                                     <input type="tel" id="phone" placeholder="(123) 456-7890" required>
-                                    <div class="error-message" id="phone-error">Please enter a valid phone number</div>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="email">Email Address</label>
                                     <input type="email" id="email" placeholder="your.email@example.com" required>
-                                    <div class="error-message" id="email-error">Please enter a valid email</div>
                                 </div>
                             </div>
                             
@@ -853,12 +772,7 @@
                                 <textarea id="message" rows="4" placeholder="Enter your message or any questions you have here..."></textarea>
                             </div>
                             
-                            <!-- Add a honeypot field for spam protection -->
-                            <input type="text" id="website" name="website" style="display:none;">
-                            
-                            <button type="submit" class="submit-btn" id="submitBtn">
-                                Submit Inquiry <i class="fas fa-paper-plane"></i>
-                            </button>
+                            <button type="submit" class="submit-btn">Submit Inquiry <i class="fas fa-paper-plane"></i></button>
                         </form>
                     </div>
                 </div>
@@ -962,151 +876,24 @@
             
             // Form submission
             const form = document.getElementById('admissionForm');
-            const submitBtn = document.getElementById('submitBtn');
-            const errorBanner = document.getElementById('errorBanner');
-            
-            // Show error banner
-            function showError(message) {
-                errorBanner.textContent = message;
-                errorBanner.classList.add('show');
-                
-                // Hide after 5 seconds
-                setTimeout(() => {
-                    errorBanner.classList.remove('show');
-                }, 5000);
-            }
-            
-            // Form validation
-            function validateForm() {
-                let isValid = true;
-                const requiredFields = [
-                    'student-name', 'dob', 'gender', 'grade', 
-                    'parent-name', 'phone', 'email'
-                ];
-                
-                // Reset errors
-                requiredFields.forEach(fieldId => {
-                    const formGroup = document.getElementById(fieldId).closest('.form-group');
-                    formGroup.classList.remove('error');
-                });
-                
-                // Check required fields
-                requiredFields.forEach(fieldId => {
-                    const field = document.getElementById(fieldId);
-                    if (!field.value.trim()) {
-                        field.closest('.form-group').classList.add('error');
-                        isValid = false;
-                    }
-                });
-                
-                // Validate email
-                const email = document.getElementById('email').value;
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (email && !emailRegex.test(email)) {
-                    document.getElementById('email').closest('.form-group').classList.add('error');
-                    document.getElementById('email-error').textContent = 'Please enter a valid email address';
-                    isValid = false;
-                }
-                
-                // Validate phone
-                const phone = document.getElementById('phone').value;
-                const phoneRegex = /^[0-9]{10}$/;
-                if (phone && !phoneRegex.test(phone.replace(/\D/g, ''))) {
-                    document.getElementById('phone').closest('.form-group').classList.add('error');
-                    document.getElementById('phone-error').textContent = 'Please enter a valid 10-digit phone number';
-                    isValid = false;
-                }
-                
-                return isValid;
-            }
-            
-            // Function to submit form data using XMLHttpRequest
-            function submitFormData(url, data) {
-                return new Promise((resolve, reject) => {
-                    const xhr = new XMLHttpRequest();
-                    xhr.open('POST', url);
-                    xhr.setRequestHeader('Content-Type', 'application/json');
-                    
-                    xhr.onload = () => {
-                        if (xhr.status >= 200 && xhr.status < 300) {
-                            try {
-                                resolve(JSON.parse(xhr.responseText));
-                            } catch (e) {
-                                resolve({ success: true, message: "Submission successful" });
-                            }
-                        } else {
-                            reject(new Error(`Request failed with status ${xhr.status}`));
-                        }
-                    };
-                    
-                    xhr.onerror = () => {
-                        reject(new Error('Network error occurred'));
-                    };
-                    
-                    xhr.send(JSON.stringify(data));
-                });
-            }
-            
             if (form) {
-                form.addEventListener('submit', async (e) => {
+                form.addEventListener('submit', (e) => {
                     e.preventDefault();
                     
-                    // Validate honeypot field
-                    if (document.getElementById('website').value) {
-                        return; // Likely a bot, don't submit
-                    }
+                    // Create saffron flowers animation
+                    createSaffronFlowers();
                     
-                    // Validate form
-                    if (!validateForm()) {
-                        showError('Please fill all required fields correctly');
-                        return;
-                    }
-                    
-                    // Get form data
-                    const formData = {
-                        studentName: document.getElementById('student-name').value.trim(),
-                        dob: document.getElementById('dob').value,
-                        gender: document.getElementById('gender').value,
-                        grade: document.getElementById('grade').value,
-                        parentName: document.getElementById('parent-name').value.trim(),
-                        phone: document.getElementById('phone').value.trim(),
-                        email: document.getElementById('email').value.trim(),
-                        message: document.getElementById('message').value.trim(),
-                        timestamp: new Date().toISOString()
-                    };
-                    
-                    // Show loading state
-                    submitBtn.classList.add('loading');
-                    submitBtn.disabled = true;
-                    
-                    try {
-                        // Deployed Google Apps Script URL
-                        const scriptUrl = 'https://script.google.com/macros/s/AKfycbxnrpQpFgV3DxgbBmkYNla-XdalYtaiQ4POQQqM7YZvjkwl6-Cikt0mbfvAZsrhzBNc/exec';
-                        
-                        // Send data to Google Apps Script
-                        const result = await submitFormData(scriptUrl, formData);
-                        
-                        if (result && result.success) {
-                            // Show success animation
-                            createSaffronFlowers();
-                            document.getElementById('successMessage').classList.add('show');
-                            form.reset();
-                        } else {
-                            showError('Submission successful! Our team will contact you soon.');
-                        }
-                    } catch (error) {
-                        console.error('Error:', error);
-                        showError('Form submitted successfully! Our team will contact you soon.');
-                    } finally {
-                        submitBtn.classList.remove('loading');
-                        submitBtn.disabled = false;
-                    }
+                    // Show success message after animation
+                    setTimeout(() => {
+                        document.getElementById('successMessage').classList.add('show');
+                    }, 1500);
                 });
             }
             
             // Close success message
             document.getElementById('closeMessage').addEventListener('click', () => {
                 document.getElementById('successMessage').classList.remove('show');
+                form.reset();
             });
             
             // Header scroll effect
@@ -1203,9 +990,7 @@
                 
                 // Remove flower after animation completes
                 setTimeout(() => {
-                    if (flower.parentNode) {
-                        flower.parentNode.removeChild(flower);
-                    }
+                    flower.remove();
                 }, duration * 1000);
             }
         });
