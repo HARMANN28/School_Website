@@ -706,21 +706,28 @@
                     </div>
                     
                     <div class="inquiry-form reveal">
-                        <form id="admissionForm" method="POST" data-netlify="true" >
+                        <!-- Netlify Form Configuration -->
+                        <form name="admission-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="admissionForm">
+                            <!-- Hidden honeypot field for spam protection -->
+                            <input type="hidden" name="form-name" value="admission-inquiry">
+                            <p class="hidden">
+                                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                            </p>
+                            
                             <div class="form-group">
                                 <label for="student-name">Student's Full Name</label>
-                                <input type="text" id="student-name" placeholder="e.g., Priya Sharma" required name="student-name">
+                                <input type="text" id="student-name" name="student-name" placeholder="e.g., Priya Sharma" required>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="dob">Date of Birth</label>
-                                    <input type="date" name="dob" id="dob" required >
+                                    <input type="date" id="dob" name="dob" required>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="gender">Gender</label>
-                                    <select name="gender" id="gender" required >
+                                    <select id="gender" name="gender" required>
                                         <option value="" disabled selected>Select Gender</option>
                                         <option value="female">Female</option>
                                         <option value="male">Male</option>
@@ -731,7 +738,7 @@
                             
                             <div class="form-group">
                                 <label for="grade">Grade Applying For</label>
-                                <select name="grade" id="grade" required >
+                                <select id="grade" name="grade" required>
                                     <option value="" disabled selected>Select Grade</option>
                                     <option value="nursery">Nursery</option>
                                     <option value="kg">Kindergarten</option>
@@ -752,24 +759,24 @@
                             
                             <div class="form-group">
                                 <label for="parent-name">Parent/Guardian Full Name(s)</label>
-                                <input type="text" id="parent-name" name="parent-name" placeholder="e.g., Rajesh & Sunita Sharma" required >
+                                <input type="text" id="parent-name" name="parent-name" placeholder="e.g., Rajesh & Sunita Sharma" required>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="phone">Contact Number</label>
-                                    <input type="tel" name="phone" id="phone" placeholder="(123) 456-7890" required >
+                                    <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890" required>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="email">Email Address</label>
-                                    <input type="email" name="email" id="email" placeholder="your.email@example.com" required >
+                                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="message">Brief Message or Questions</label>
-                                <textarea name="message" id="message" rows="4" placeholder="Enter your message or any questions you have here..."  ></textarea>
+                                <textarea id="message" name="message" rows="4" placeholder="Enter your message or any questions you have here..."></textarea>
                             </div>
                             
                             <button type="submit" class="submit-btn">Submit Inquiry <i class="fas fa-paper-plane"></i></button>
@@ -878,8 +885,6 @@
             const form = document.getElementById('admissionForm');
             if (form) {
                 form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    
                     // Create saffron flowers animation
                     createSaffronFlowers();
                     
@@ -893,7 +898,7 @@
             // Close success message
             document.getElementById('closeMessage').addEventListener('click', () => {
                 document.getElementById('successMessage').classList.remove('show');
-                form.reset();
+                if (form) form.reset();
             });
             
             // Header scroll effect
