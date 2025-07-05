@@ -555,6 +555,16 @@
             100% { transform: scale(1); }
         }
 
+        /* Honeypot field styling */
+        .hidden {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+            height: 0;
+            width: 0;
+            overflow: hidden;
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
             .form-container {
@@ -864,6 +874,31 @@
     </footer>
 
     <script>
+        async function submitForm(event) {
+            event.preventDefault();
+            const form = event.target;
+            
+            // Create saffron flowers animation
+            createSaffronFlowers();
+            
+            // Submit to Netlify
+            const formData = new FormData(form);
+            try {
+                await fetch("/", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: new URLSearchParams(formData).toString(),
+                });
+                
+                // Show success message
+                document.getElementById('successMessage').classList.add('show');
+                form.reset();
+            } catch (error) {
+                console.error('Form submission error:', error);
+                alert('There was an error submitting your form. Please try again.');
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             // Initialize animations
             const observer = new IntersectionObserver((entries) => {
@@ -885,13 +920,8 @@
             const form = document.getElementById('admissionForm');
             if (form) {
                 form.addEventListener('submit', (e) => {
-                    // Create saffron flowers animation
-                    createSaffronFlowers();
-                    
-                    // Show success message after animation
-                    setTimeout(() => {
-                        document.getElementById('successMessage').classList.add('show');
-                    }, 1500);
+                    e.preventDefault();
+                    submitForm(e);
                 });
             }
             
