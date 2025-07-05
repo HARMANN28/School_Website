@@ -798,29 +798,6 @@
                 EVENTS: 'Events'              // Actual sheet name
             }
         };
-
-        // Debugging function
-        function debugLog(message) {
-            const debugPanel = document.getElementById('debugContent');
-            const timestamp = new Date().toLocaleTimeString();
-            debugPanel.innerHTML += `<div>[${timestamp}] ${message}</div>`;
-            debugPanel.scrollTop = debugPanel.scrollHeight;
-        }
-
-        // Toggle debug panel
-        document.getElementById('debugToggle').addEventListener('click', () => {
-            const panel = document.getElementById('debugPanel');
-            const toggle = document.getElementById('debugToggle');
-            
-            if (panel.style.display === 'none') {
-                panel.style.display = 'block';
-                toggle.textContent = 'Hide Debug';
-            } else {
-                panel.style.display = 'none';
-                toggle.textContent = 'Show Debug';
-            }
-        });
-
         // =================
         // DATA FETCHING FUNCTIONS (FIXED)
         // =================
