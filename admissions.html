@@ -706,21 +706,21 @@
                     </div>
                     
                     <div class="inquiry-form reveal">
-                        <form id="admissionForm" netlify>
+                        <form id="admissionForm" method="POST" data-netlify="true" onSubmit="submit">
                             <div class="form-group">
                                 <label for="student-name">Student's Full Name</label>
-                                <input type="text" id="student-name" placeholder="e.g., Priya Sharma" required>
+                                <input type="text" id="student-name" placeholder="e.g., Priya Sharma" required name="student-name">
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="dob">Date of Birth</label>
-                                    <input type="date" id="dob" required>
+                                    <input type="date" id="dob" required name="dob">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="gender">Gender</label>
-                                    <select id="gender" required>
+                                    <select id="gender" required name="gender">
                                         <option value="" disabled selected>Select Gender</option>
                                         <option value="female">Female</option>
                                         <option value="male">Male</option>
@@ -731,7 +731,7 @@
                             
                             <div class="form-group">
                                 <label for="grade">Grade Applying For</label>
-                                <select id="grade" required>
+                                <select id="grade" required name="grade">
                                     <option value="" disabled selected>Select Grade</option>
                                     <option value="nursery">Nursery</option>
                                     <option value="kg">Kindergarten</option>
@@ -752,24 +752,24 @@
                             
                             <div class="form-group">
                                 <label for="parent-name">Parent/Guardian Full Name(s)</label>
-                                <input type="text" id="parent-name" placeholder="e.g., Rajesh & Sunita Sharma" required>
+                                <input type="text" id="parent-name" placeholder="e.g., Rajesh & Sunita Sharma" required name="parent-name">
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="phone">Contact Number</label>
-                                    <input type="tel" id="phone" placeholder="(123) 456-7890" required>
+                                    <input type="tel" id="phone" placeholder="(123) 456-7890" required name="phone">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="email">Email Address</label>
-                                    <input type="email" id="email" placeholder="your.email@example.com" required>
+                                    <input type="email" id="email" placeholder="your.email@example.com" required name="email">
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="message">Brief Message or Questions</label>
-                                <textarea id="message" rows="4" placeholder="Enter your message or any questions you have here..."></textarea>
+                                <textarea id="message" rows="4" placeholder="Enter your message or any questions you have here..." name="message" ></textarea>
                             </div>
                             
                             <button type="submit" class="submit-btn">Submit Inquiry <i class="fas fa-paper-plane"></i></button>
