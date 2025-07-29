@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Photo Gallery - Shri Guru Nanak Mission Girls High Secondary School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --saffron-light: #ff9933;
+            --saffron-primary: #ff8c00;
+            --saffron-deep: #e67e00;
+            --maroon-light: #a0522d;
+            --maroon-primary: #8b0000;
+            --maroon-deep: #650000;
+            --cream: #fef7e6;
+            --warm-white: #fefdfb;
+            --gold-accent: #daa520;
+            --text-dark: #2c1810;
+            --text-medium: #5a453a;
+            --shadow-subtle: 0 4px 20px rgba(139, 0, 0, 0.08);
+            --shadow-medium: 0 8px 40px rgba(139, 0, 0, 0.12);
+            --shadow-strong: 0 16px 60px rgba(139, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 50%, #fff8f0 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Elegant Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 153, 51, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--maroon-primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo::before {
+            content: "ੴ";
+            font-size: 1.8rem;
+            color: var(--saffron-primary);
+            font-weight: bold;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--saffron-primary), var(--maroon-primary));
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-menu a:hover {
+            color: var(--maroon-primary);
+            transform: translateY(-2px);
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Gallery Header - Enhanced */
+        .gallery-header {
+            background: linear-gradient(135deg, var(--maroon-primary) 0%, var(--maroon-deep) 50%, var(--saffron-deep) 100%);
+            color: white;
+            text-align: center;
+            padding: 8rem 0 4rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 153, 51, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .gallery-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .gallery-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Filter Buttons - Enhanced */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 0 0 3rem 0;
+            animation: slideInUp 0.6s ease-out 0.4s both;
+        }
+
+        .filter-btn {
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 153, 51, 0.2);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .filter-btn:hover::before {
+            left: 100%;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, var(--saffron-primary), var(--saffron-deep));
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--saffron-primary);
+        }
+
+        /* Photo Grid - Enhanced */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .photo-card:nth-child(even) {
+            animation-delay: 0.1s;
+        }
+
+        .photo-card:nth-child(3n) {
+            animation-delay: 0.2s;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .photo-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            transition: all 0.4s ease;
+            filter: brightness(1) saturate(1);
+        }
+
+        .photo-card:hover .photo-img {
+            filter: brightness(1.1) saturate(1.2);
+            transform: scale(1.05);
+        }
+
+        .photo-info {
+            padding: 0.8rem 1rem; /* Reduced padding */
+            background: white;
+            position: relative;
+            text-align: center; /* Center date text */
+        }
+
+        /* Removed .photo-title style */
+        
+        .photo-date {
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Photo overlay */
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.8), rgba(255, 140, 0, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .photo-card:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .view-icon {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Load More Button - Enhanced */
+        .load-more {
+            display: block;
+            margin: 3rem auto;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, var(--saffron-primary), var(--saffron-deep));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .load-more::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .load-more:hover::before {
+            left: 100%;
+        }
+
+        .load-more:hover {
+            background: linear-gradient(135deg, var(--maroon-primary), var(--maroon-deep));
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        /* Loading spinner - Enhanced */
+        .spinner {
+            display: none;
+            margin: 2rem auto;
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(139, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--saffron-primary);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        /* Lightbox - Enhanced */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(44, 24, 16, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            overflow: auto;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            margin: auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-strong);
+            animation: scaleIn 0.3s ease-out;
+        }
+
+        .lightbox-image {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .lightbox-info {
+            padding: 1.5rem; /* Reduced padding */
+            background: white;
+            text-align: center; /* Center date text */
+        }
+
+        /* Removed .lightbox-title style */
+        
+        .lightbox-date {
+            color: var(--text-medium);
+            font-size: 1rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(139, 0, 0, 0.9);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 2001;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-close:hover {
+            background: var(--maroon-primary);
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(139, 0, 0, 0.9);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 2001;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-nav:hover {
+            background: var(--maroon-primary);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(139, 0, 0, 0.9);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 2001;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            from { 
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to { 
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .gallery-header h1 {
+                font-size: 2.8rem;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                justify-content: center;
+            }
+
+            .gallery-header {
+                padding: 6rem 0 3rem;
+            }
+
+            .gallery-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .gallery-header p {
+                font-size: 1.1rem;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+
+            .filter-buttons {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .lightbox-content {
+                max-width: 95%;
+                max-height: 95%;
+            }
+
+            .lightbox-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+
+            .lightbox-close {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+        }
+
+        /* Photo card stagger animation */
+        .photo-card:nth-child(1) { animation-delay: 0.1s; }
+        .photo-card:nth-child(2) { animation-delay: 0.2s; }
+        .photo-card:nth-child(3) { animation-delay: 0.3s; }
+        .photo-card:nth-child(4) { animation-delay: 0.4s; }
+        .photo-card:nth-child(5) { animation-delay: 0.5s; }
+        .photo-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">SGNMGHS</a>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="admissions.html">Admissions</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="Gallery-3.html">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <header class="gallery-header">
+        <div class="container">
+            <h1>School Memories</h1>
+            <p>Capturing special moments from our school community</p>
+        </div>
+    </header>
+
+    <div class="gallery-container">
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Events</button>
+            <button class="filter-btn" data-filter="sports">Sports Day</button>
+            <button class="filter-btn" data-filter="cultural">Cultural Fest</button>
+            <button class="filter-btn" data-filter="graduation">Graduation</button>
+            <button class="filter-btn" data-filter="classroom">Classroom</button>
+        </div>
+
+        <div class="photo-grid" id="photoGrid">
+            <!-- Photos will be loaded here dynamically -->
+        </div>
+
+        <div class="spinner" id="loadingSpinner"></div>
+
+        <button class="load-more" id="loadMore">Load More Photos</button>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">&#8249;</button>
+            <button class="lightbox-nav lightbox-next" id="lightboxNext">&#8250;</button>
+
+            <img class="lightbox-image" id="lightboxImage" src="" alt="">
+
+            <div class="lightbox-info">
+                <!-- Removed title element -->
+                <p class="lightbox-date" id="lightboxDate"></p>
+            </div>
+
+            <div class="lightbox-counter" id="lightboxCounter">1 / 1</div>
+        </div>
+    </div>
+
+    <script>
+        // Google Drive API integration with folder-based filtering
+        const API_KEY = 'AIzaSyAkIPLoXKLZUy5f2nAjlKWpfAINWiJm3bk';
+
+        // Define folder IDs for each category
+        const FOLDER_CONFIG = {
+            'all': ['1PLD7poH-xlGMBy9LjBeDdlcbFynyzcaF'], // Main gallery folder
+            'sports': ['1GIpyI2VmvJ7_IFFM_uf-JuJk4vaF_T8v'],           // Replace with actual Sports folder ID
+            'cultural': ['1M0-3AuJoVjO5wkLJFUHEf1nN_KP2HNV_'],       // Replace with actual Cultural folder ID
+            'graduation': ['1RqJYPX8cfNM4MfLeaYIgjUzUkCWhYzkv'],   // Replace with actual Graduation folder ID
+            'classroom': ['1psqoe1dmk-V4x3ZqSnchPtEJVGzT1qLh']      // Replace with actual Classroom folder ID
+        };
+
+        // =================
+        // GLOBAL VARIABLES
+        // =================
+
+        let currentFilter = 'all';
+        let nextPageTokens = {}; // Store pagination tokens for each folder
+        let isLoading = false;
+        let allPhotos = []; // Store all loaded photos for lightbox navigation
+        let currentPhotoIndex = 0;
+        let photosByCategory = {}; // Store photos by category for better organization
+        let loadedCategories = {}; // Track which categories have been loaded
+
+        // =================
+        // INITIALIZATION
+        // =================
+
+        // Initialize the gallery
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize photo storage for each category
+            Object.keys(FOLDER_CONFIG).forEach(category => {
+                photosByCategory[category] = [];
+                nextPageTokens[category] = '';
+                loadedCategories[category] = false;
+            });
+
+            // Start by loading the 'all' category
+            loadPhotos(currentFilter);
+
+            // Set up filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const newFilter = btn.dataset.filter;
+                    
+                    // Update active button
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Switch to new category
+                    switchCategory(newFilter);
+                });
+            });
+
+            // Load more photos when button clicked
+            document.getElementById('loadMore').addEventListener('click', () => loadPhotos(currentFilter));
+
+            // Set up lightbox event listeners
+            setupLightbox();
+
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const header = document.querySelector('header');
+                
+                if (scrollTop > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.boxShadow = '0 2px 20px rgba(139, 0, 0, 0.1)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = 'none';
+                }
+            });
+
+            // Initialize scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // =================
+        // PHOTO LOADING FUNCTIONS
+        // =================
+
+        async function loadPhotos(category = 'all') {
+            if (isLoading) return;
+
+            isLoading = true;
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('loadMore').style.display = 'none';
+
+            try {
+                // For 'all' category, we need to load from multiple folders
+                if (category === 'all') {
+                    // Load all categories if not already loaded
+                    const categories = Object.keys(FOLDER_CONFIG).filter(cat => cat !== 'all');
+                    const loadPromises = categories.map(cat => {
+                        if (!loadedCategories[cat]) {
+                            return loadCategory(cat);
+                        }
+                        return Promise.resolve();
+                    });
+
+                    await Promise.all(loadPromises);
+                    
+                    // Combine photos from all categories
+                    photosByCategory['all'] = [];
+                    categories.forEach(cat => {
+                        photosByCategory['all'] = [...photosByCategory['all'], ...photosByCategory[cat]];
+                    });
+                    
+                    // Display combined photos
+                    displayPhotos(photosByCategory['all'], 'all');
+                } else {
+                    // Load a specific category
+                    await loadCategory(category);
+                }
+                
+                // Show load more button if there might be more photos
+                if (nextPageTokens[category]) {
+                    document.getElementById('loadMore').style.display = 'block';
+                } else {
+                    document.getElementById('loadMore').style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Error loading photos:', error);
+                showErrorMessage(category, error.message);
+            } finally {
+                isLoading = false;
+                document.getElementById('loadingSpinner').style.display = 'none';
+            }
+        }
+
+        async function loadCategory(category) {
+            const folderIds = FOLDER_CONFIG[category];
+            if (!folderIds || folderIds.length === 0 || folderIds.some(id => id.includes('_FOLDER_ID_HERE'))) {
+                console.warn(`Folder IDs not configured for category: ${category}`);
+                showCategoryNotAvailable(category);
+                return;
+            }
+
+            // Track that we're loading this category
+            loadedCategories[category] = true;
+            
+            // Clear existing photos for this category
+            photosByCategory[category] = [];
+            
+            // Load photos from each folder in this category
+            for (const folderId of folderIds) {
+                let nextPageToken = nextPageTokens[category] || '';
+                
+                const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents&key=${API_KEY}&pageSize=12&fields=files(id,name,createdTime,thumbnailLink),nextPageToken&pageToken=${nextPageToken}`;
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.files && data.files.length > 0) {
+                    data.files.forEach(file => {
+                        if (file.thumbnailLink) {
+                            photosByCategory[category].push({...file, category: category});
+                        }
+                    });
+                    
+                    nextPageTokens[category] = data.nextPageToken || '';
+                }
+            }
+        }
+
+        function switchCategory(newCategory) {
+            currentFilter = newCategory;
+            
+            // Clear current display
+            const photoGrid = document.getElementById('photoGrid');
+            photoGrid.innerHTML = '';
+            
+            // Reset allPhotos array for lightbox
+            allPhotos = [];
+            
+            // If we have photos for this category, display them
+            if (photosByCategory[newCategory] && photosByCategory[newCategory].length > 0) {
+                displayPhotos(photosByCategory[newCategory], newCategory, true);
+                
+                // Show load more button if there might be more photos
+                if (nextPageTokens[newCategory]) {
+                    document.getElementById('loadMore').style.display = 'block';
+                } else {
+                    document.getElementById('loadMore').style.display = 'none';
+                }
+            } else {
+                // Load photos for this category
+                loadPhotos(newCategory);
+            }
+        }
+
+        // =================
+        // PHOTO DISPLAY FUNCTIONS
+        // =================
+
+        function displayPhotos(files, category = 'all', isFromCache = false) {
+            const photoGrid = document.getElementById('photoGrid');
+
+            files.forEach((file, index) => {
+                if (file.thumbnailLink) {
+                    // Add to allPhotos array for lightbox navigation
+                    if (!isFromCache) {
+                        allPhotos.push(file);
+                    }
+
+                    const photoCard = document.createElement('div');
+                    photoCard.className = 'photo-card reveal';
+                    photoCard.dataset.category = category;
+                    photoCard.dataset.photoIndex = allPhotos.length - 1; // Store index for lightbox
+                    photoCard.style.animationDelay = `${index * 0.1}s`;
+
+                    const img = document.createElement('img');
+                    img.src = `https://drive.google.com/thumbnail?id=${file.id}&sz=w800`;
+                    img.alt = file.name;
+                    img.className = 'photo-img';
+
+                    const overlay = document.createElement('div');
+                    overlay.className = 'photo-overlay';
+                    overlay.innerHTML = '<div class="view-icon">👁</div>';
+
+                    const photoInfo = document.createElement('div');
+                    photoInfo.className = 'photo-info';
+
+                    // Removed title creation
+                    
+                    const date = document.createElement('p');
+                    date.textContent = formatDate(file.createdTime);
+                    date.className = 'photo-date';
+
+                    // Add category badge
+                    if (category !== 'all') {
+                        const categoryBadge = document.createElement('span');
+                        categoryBadge.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+                        categoryBadge.style.cssText = `
+                            position: absolute;
+                            top: 1rem;
+                            right: 1rem;
+                            background: linear-gradient(135deg, var(--saffron-primary), var(--saffron-deep));
+                            color: white;
+                            padding: 0.3rem 0.8rem;
+                            border-radius: 15px;
+                            font-size: 0.8rem;
+                            font-weight: 600;
+                            text-transform: capitalize;
+                            z-index: 10;
+                        `;
+                        photoCard.appendChild(categoryBadge);
+                        photoCard.style.position = 'relative';
+                    }
+
+                    // Removed title append
+                    photoInfo.appendChild(date);
+
+                    photoCard.appendChild(img);
+                    photoCard.appendChild(overlay);
+                    photoCard.appendChild(photoInfo);
+
+                    // Add click event listener to open lightbox
+                    photoCard.addEventListener('click', () => {
+                        openLightbox(parseInt(photoCard.dataset.photoIndex));
+                    });
+
+                    photoGrid.appendChild(photoCard);
+                }
+            });
+
+            // If displaying from cache, rebuild allPhotos array
+            if (isFromCache) {
+                allPhotos = [...files];
+                // Update photo indices
+                const photoCards = photoGrid.querySelectorAll('.photo-card');
+                photoCards.forEach((card, index) => {
+                    card.dataset.photoIndex = index;
+                });
+            }
+        }
+
+        // =================
+        // ERROR AND EMPTY STATE FUNCTIONS
+        // =================
+
+        function showCategoryNotAvailable(category) {
+            const photoGrid = document.getElementById('photoGrid');
+            photoGrid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: rgba(255, 255, 255, 0.9); border-radius: 20px; margin: 2rem 0;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;">📁</div>
+                    <h3 style="color: var(--maroon-primary); margin-bottom: 1rem; font-family: 'Playfair Display', serif;">Category Not Available</h3>
+                    <p style="color: var(--text-medium);">The ${category.charAt(0).toUpperCase() + category.slice(1)} category folder hasn't been set up yet.<br>Please check back later or contact the administrator.</p>
+                </div>
+            `;
+            document.getElementById('loadMore').style.display = 'none';
+        }
+
+        function showEmptyCategory(category) {
+            const photoGrid = document.getElementById('photoGrid');
+            photoGrid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: rgba(255, 255, 255, 0.9); border-radius: 20px; margin: 2rem 0;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;">📸</div>
+                    <h3 style="color: var(--maroon-primary); margin-bottom: 1rem; font-family: 'Playfair Display', serif;">No Photos Yet</h3>
+                    <p style="color: var(--text-medium);">No photos have been uploaded to the ${category.charAt(0).toUpperCase() + category.slice(1)} category yet.<br>Check back soon for new memories!</p>
+                </div>
+            `;
+        }
+
+        function showErrorMessage(category, errorMessage) {
+            const photoGrid = document.getElementById('photoGrid');
+            photoGrid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: rgba(211, 47, 47, 0.1); border: 2px solid rgba(211, 47, 47, 0.2); border-radius: 20px; margin: 2rem 0;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;">⚠️</div>
+                    <h3 style="color: #d32f2f; margin-bottom: 1rem; font-family: 'Playfair Display', serif;">Error Loading Photos</h3>
+                    <p style="color: var(--text-medium);">Could not load photos for ${category.charAt(0).toUpperCase() + category.slice(1)} category.<br>Please try again later.</p>
+                    <button onclick="loadPhotos('${category}')" style="margin-top: 1rem; padding: 0.8rem 1.5rem; background: var(--saffron-primary); color: white; border: none; border-radius: 25px; cursor: pointer; font-weight: 600;">Try Again</button>
+                </div>
+            `;
+        }
+
+        // =================
+        // LIGHTBOX FUNCTIONS
+        // =================
+
+        function setupLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const lightboxPrev = document.getElementById('lightboxPrev');
+            const lightboxNext = document.getElementById('lightboxNext');
+
+            // Close lightbox
+            lightboxClose.addEventListener('click', closeLightbox);
+
+            // Close lightbox when clicking outside the content
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Navigation buttons
+            lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+            lightboxNext.addEventListener('click', () => navigateLightbox(1));
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('active')) {
+                    switch(e.key) {
+                        case 'Escape':
+                            closeLightbox();
+                            break;
+                        case 'ArrowLeft':
+                            navigateLightbox(-1);
+                            break;
+                        case 'ArrowRight':
+                            navigateLightbox(1);
+                            break;
+                    }
+                }
+            });
+        }
+
+        function openLightbox(photoIndex) {
+            currentPhotoIndex = photoIndex;
+            const photo = allPhotos[photoIndex];
+
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxDate = document.getElementById('lightboxDate');
+            const lightboxCounter = document.getElementById('lightboxCounter');
+
+            // Set image source to high-resolution version
+            lightboxImage.src = `https://drive.google.com/thumbnail?id=${photo.id}&sz=w1600`;
+            lightboxImage.alt = photo.name;
+
+            // Set photo date only
+            lightboxDate.textContent = formatDate(photo.createdTime);
+
+            // Update counter
+            lightboxCounter.textContent = `${photoIndex + 1} / ${allPhotos.length}`;
+
+            // Show lightbox
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        function navigateLightbox(direction) {
+            const newIndex = currentPhotoIndex + direction;
+
+            if (newIndex >= 0 && newIndex < allPhotos.length) {
+                openLightbox(newIndex);
+            }
+        }
+
+        // =================
+        // HELPER FUNCTIONS
+        // =================
+
+        function formatTitle(filename) {
+            return filename.replace(/\.[^/.]+$/, "") // Remove extension
+                          .replace(/[-_]/g, ' ')    // Replace underscores/dashes with spaces
+                          .replace(/\b\w/g, l => l.toUpperCase()); // Capitalize first letters of words
+        }
+
+        function formatDate(isoDate) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(isoDate).toLocaleDateString(undefined, options);
+        }
+
+    </script>
+</body>
+</html>
