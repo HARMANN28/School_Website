@@ -181,10 +181,10 @@
             font-weight: 600;
         }
 
-        /* Timeline Section */
-        .timeline-section {
-            background: var(--warm-white);
+        /* Leadership Section */
+        .leadership-section {
             padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(254, 247, 230, 0.9));
             position: relative;
         }
 
@@ -221,102 +221,6 @@
             line-height: 1.7;
         }
 
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background: linear-gradient(to bottom, var(--saffron-primary), var(--maroon-primary));
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-            border-radius: 3px;
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-        }
-
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-
-        .timeline-content {
-            padding: 30px;
-            background: white;
-            position: relative;
-            border-radius: 24px;
-            box-shadow: var(--shadow-subtle);
-            transition: all 0.3s ease;
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .timeline-content h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--maroon-primary);
-            margin-bottom: 1rem;
-        }
-
-        .timeline-content .date {
-            background: linear-gradient(135deg, var(--saffron-primary), var(--saffron-deep));
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            right: -10px;
-            top: 40px;
-            background: white;
-            border: 4px solid var(--saffron-primary);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            left: -10px;
-            top: 40px;
-            background: white;
-            border: 4px solid var(--saffron-primary);
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        /* Leadership Section */
-        .leadership-section {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(254, 247, 230, 0.9));
-            position: relative;
-        }
-
         .leadership-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -337,23 +241,6 @@
             box-shadow: var(--shadow-medium);
         }
 
-        .leader-image {
-            height: 300px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .leader-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .leader-card:hover .leader-image img {
-            transform: scale(1.05);
-        }
-
         .leader-info {
             padding: 2rem;
             text-align: center;
@@ -370,23 +257,6 @@
             font-weight: 600;
             margin-bottom: 1rem;
             display: block;
-        }
-
-        .leader-social {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .leader-social a {
-            color: var(--text-medium);
-            transition: all 0.3s ease;
-        }
-
-        .leader-social a:hover {
-            color: var(--saffron-primary);
-            transform: translateY(-3px);
         }
 
         /* Facilities Section */
@@ -646,26 +516,6 @@
             .about-hero-text h1 {
                 font-size: 2.8rem;
             }
-            
-            .timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-            
-            .timeline-item:nth-child(odd) .timeline-content::after,
-            .timeline-item:nth-child(even) .timeline-content::after {
-                left: 15px;
-                top: 30px;
-            }
         }
 
         @media (max-width: 768px) {
@@ -736,62 +586,10 @@
                 <div class="about-hero-content">
                     <div class="about-hero-text reveal">
                         <h1>Our <span class="highlight">Distinguished</span> Legacy</h1>
-                        <p class="subtitle">For over 150 years, Shri Guru Nanak Mission Girls High Secondary School has been shaping young minds with values, knowledge, and character. Our journey began in 1870 with a vision to empower girls through education.</p>
-                        <p class="subtitle">Today, we stand as a beacon of excellence, nurturing future leaders who make a difference in the world.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="timeline-section">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2>Our Journey Through Time</h2>
-                    <p>A rich heritage of educational excellence spanning three centuries</p>
-                </div>
-                
-                <div class="timeline">
-                    <div class="timeline-item reveal">
-                        <div class="timeline-content">
-                            <div class="date">1870</div>
-                            <h3>Foundation Laid</h3>
-                            <p>Established by visionary educator Rev. W. B. Drawbridge as a small school for girls in Jabalpur, with just 12 students and a mission to empower women through education.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-content">
-                            <div class="date">1925</div>
-                            <h3>New Campus Inauguration</h3>
-                            <p>Moved to our current heritage campus with expanded facilities. The iconic main building was constructed with contributions from the local community.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-content">
-                            <div class="date">1952</div>
-                            <h3>Affiliation with CBSE</h3>
-                            <p>Became one of the first girls' schools in the region to be affiliated with the Central Board of Secondary Education, setting new academic standards.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-content">
-                            <div class="date">1987</div>
-                            <h3>Science Wing Expansion</h3>
-                            <p>Added state-of-the-art science laboratories and computer center, embracing technological advancements in education.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-content">
-                            <div class="date">2005</div>
-                            <h3>Green Campus Initiative</h3>
-                            <p>Launched our environmental program, transforming the campus into an eco-friendly space with solar power and rainwater harvesting.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-content">
-                            <div class="date">2020</div>
-                            <h3>150 Years Celebration</h3>
-                            <p>Celebrated our sesquicentennial anniversary with alumni from across the globe, honoring 150 years of empowering women leaders.</p>
-                        </div>
+                        <p class="subtitle">Welcome to Shri Gurunanak Mission H.S.School (Hindi/English Medium), Premnagar, Jabalpur. Established in 1959, our institution was founded to serve the growing educational needs of students in our community.</p>
+                        <p class="subtitle">श्री गुरुनानक मिशन उ.मा.शाला, प्रेमनगर, जबलपुर सन 1959 में समाज के हर स्तर के विद्यार्थियों को शिक्षा उपलब्ध कराने के लिए प्रारम्भ किया गया है।</p>
+                        <p class="subtitle">We are an institution where students belonging to all castes, religions, and creeds are motivated to become good scholars. Following the teachings of Guru Gobind Singh Ji's words "शुभ करमन ते कबहुँ न टरों" (Never deviate from righteous deeds), our school continuously strives to embody these noble principles in our educational approach.</p>
+                        <p class="subtitle">For over six decades, we have been dedicated to providing quality education while nurturing values of integrity, inclusivity, and academic excellence. Our mission remains steadfast in creating an environment where every student can flourish regardless of their background.</p>
                     </div>
                 </div>
             </div>
@@ -806,59 +604,23 @@
                 
                 <div class="leadership-grid">
                     <div class="leader-card reveal">
-                        <div class="leader-image">
-                            <!-- Principal image placeholder -->
-                            <div style="background: linear-gradient(to bottom, #e0c9a6, #d2b48c); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--maroon-primary); font-size: 1.2rem; font-weight: 600;">
-                                Principal's Portrait
-                            </div>
-                        </div>
                         <div class="leader-info">
                             <h3>Dr. Meera Sharma</h3>
                             <span class="position">Principal</span>
-                            <p>With over 25 years of educational leadership, Dr. Sharma champions innovative pedagogy and holistic development.</p>
-                            <div class="leader-social">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                            </div>
                         </div>
                     </div>
                     
                     <div class="leader-card reveal">
-                        <div class="leader-image">
-                            <!-- Vice Principal image placeholder -->
-                            <div style="background: linear-gradient(to bottom, #e0c9a6, #d2b48c); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--maroon-primary); font-size: 1.2rem; font-weight: 600;">
-                                Vice Principal's Portrait
-                            </div>
-                        </div>
                         <div class="leader-info">
                             <h3>Mrs. Kavita Singh</h3>
                             <span class="position">Vice Principal</span>
-                            <p>Specializing in curriculum development, Mrs. Singh ensures academic excellence while nurturing student well-being.</p>
-                            <div class="leader-social">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                            </div>
                         </div>
                     </div>
                     
                     <div class="leader-card reveal">
-                        <div class="leader-image">
-                            <!-- Academic Head image placeholder -->
-                            <div style="background: linear-gradient(to bottom, #e0c9a6, #d2b48c); height: 100%; display: flex; align-items: center; justify-content: center; color: var(--maroon-primary); font-size: 1.2rem; font-weight: 600;">
-                                Academic Head's Portrait
-                            </div>
-                        </div>
                         <div class="leader-info">
                             <h3>Dr. Anjali Verma</h3>
                             <span class="position">Head of Academics</span>
-                            <p>Dr. Verma leads our research-driven approach to education, integrating traditional values with modern pedagogy.</p>
-                            <div class="leader-social">
-                                <a href="#"><i class="fab fa-linkedin"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1040,8 +802,8 @@
                 <div class="footer-section">
                     <h3>Contact Information</h3>
                     <p>Shri Guru Nanak Mission Girls High Secondary School</p>
-                    <p>Established 1870 | CBSE Affiliated</p>
-                    <p>Jabalpur Diocese, CNI</p>
+                    <p>Established 1959 | MP Board Affiliated</p>
+                    <p>Premnagar, Jabalpur</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -1050,8 +812,8 @@
                     <p>Student Portal • Parent Login</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Excellence Since 1870</h3>
-                    <p>153 years of educational excellence</p>
+                    <h3>Excellence Since 1959</h3>
+                    <p>65 years of educational excellence</p>
                     <p>Nurturing leaders of tomorrow</p>
                     <p>Building character, inspiring dreams</p>
                 </div>
