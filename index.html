@@ -408,71 +408,6 @@
             z-index: 2;
         }
 
-        /* Results Section */
-        .results-section {
-            background: linear-gradient(135deg, var(--maroon-primary) 0%, var(--maroon-deep) 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .results-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 153, 51, 0.1) 0%, transparent 70%);
-            animation: rotate 30s linear infinite;
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin: 3rem 0;
-            position: relative;
-            z-index: 2;
-        }
-
-        .result-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            padding: 2.5rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 153, 51, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .result-card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .result-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            margin-bottom: 1.5rem;
-            color: var(--saffron-light);
-        }
-
-        .result-placeholder {
-            background: rgba(255, 153, 51, 0.1);
-            height: 200px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 1.5rem 0;
-            border: 2px dashed rgba(255, 153, 51, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .result-placeholder:hover {
-            background: rgba(255, 153, 51, 0.15);
-        }
-
         /* Footer */
         footer {
             background: var(--text-dark);
@@ -676,7 +611,7 @@
                 <div class="hero-content">
                     <div class="hero-text reveal">
                         <h1>Shri Guru Nanak Mission<br><span class="highlight">Girls High Secondary School</span></h1>
-                        <p class="subtitle">Where tradition meets innovation, nurturing tomorrow's leaders with values, knowledge, and compassion since 1870.</p>
+                        <p class="subtitle">Where tradition meets innovation, nurturing tomorrow's leaders with values, knowledge, and compassion since 1959.</p>
                         
                         <div class="cta-group">
                             <a href="#admissions" class="btn-primary">
@@ -703,16 +638,16 @@
             <div class="container">
                 <div class="section-header reveal">
                     <h2>Our Distinguished Heritage</h2>
-                    <p>A legacy of excellence spanning over 153 years, building character and nurturing dreams</p>
+                    <p>A legacy of excellence spanning over 65 years, building character and nurturing dreams</p>
                 </div>
                 
                 <div class="reveal">
                     <p style="font-size: 1.1rem; line-height: 1.8; text-align: center; max-width: 900px; margin: 0 auto 3rem; color: var(--text-medium);">
-                        The Shri Guru Nanak Mission Girls High Secondary School, established in 1870 by the visionary founder Rev. W. B. Drawbridge, continues to uphold its incredible traditional values in a sterling manner. Our institution functions under the aegis of the Board of Education, Church of North India, Jabalpur Diocese, providing education based on the quintessence of spiritual ideals and principles.
+                        The Shri Gurunanak Mission H.S. School, established in 1959 in Premnagar, Jabalpur, was founded to serve the growing educational needs of students from all walks of life. Our institution functions as a Hindi/English medium school where students belonging to all castes, religions, and creeds are motivated to become good scholars and exemplary individuals.
                     </p>
                     
                     <p style="font-size: 1.1rem; line-height: 1.8; text-align: center; max-width: 900px; margin: 0 auto; color: var(--text-medium);">
-                        As a premiere sesquicentennial institution, we have a dedicated and efficacious staff mentoring young minds into self-resilient individuals of tomorrow. Our progressive approach has consistently contributed to improving and strengthening society, adhering to the rules framed by the Central Board of Secondary Education, New Delhi.
+                        श्री गुरुनानक मिशन उ.मा.शाला, प्रेमनगर, जबलपुर सन 1959 में समाज के हर स्तर के विद्यार्थियों को शिक्षा उपलब्ध कराने के लिए प्रारम्भ किया गया है। गुरुगोविंद सिंह जी द्वारा रचित शब्द "शुभ करमन ते कबहुँ न टरों" द्वारा दी जाने वाली सीख को शाला लगातार चरितार्थ कर रहा है। Our institution continues to uphold these sacred values, adhering to the rules framed by the MP Board and providing quality education to students of diverse backgrounds.
                     </p>
                 </div>
 
@@ -737,20 +672,6 @@
                 </div>
             </div>
         </section>
-
-        <section class="results-section section" id="results">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 style="color: white;">Academic Excellence</h2>
-                    <p style="color: rgba(255, 255, 255, 0.9);">CBSE Board Results 2024-2025 - Celebrating Outstanding Achievements</p>
-                </div>
-                
-                <div class="results-grid" id="results-grid">
-                    <div class="spinner"></div>
-                    <p class="loading-text" style="color: white;">Loading results data...</p>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer>
@@ -759,8 +680,8 @@
                 <div class="footer-section">
                     <h3>Contact Information</h3>
                     <p>Shri Guru Nanak Mission Girls High Secondary School</p>
-                    <p>Established 1870 | CBSE Affiliated</p>
-                    <p>Jabalpur Diocese, CNI</p>
+                    <p>Established 1959 | MP Board Affiliated</p>
+                    <p>Premnagar, Jabalpur</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -769,8 +690,8 @@
                     <p>Student Portal • Parent Login</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Excellence Since 1870</h3>
-                    <p>153 years of educational excellence</p>
+                    <h3>Excellence Since 1959</h3>
+                    <p>65 years of educational excellence</p>
                     <p>Nurturing leaders of tomorrow</p>
                     <p>Building character, inspiring dreams</p>
                 </div>
@@ -866,13 +787,6 @@
                             <br><small>${error.message}</small>
                         </div>
                     `;
-                } else if (sheetName === GOOGLE_SHEETS_CONFIG.SHEETS.RESULTS) {
-                    document.getElementById('results-grid').innerHTML = `
-                        <div class="error-message" style="color: white; background-color: rgba(211, 47, 47, 0.2);">
-                            Could not load results data. Please try again later.
-                            <br><small>${error.message}</small>
-                        </div>
-                    `;
                 }
                 
                 return [];
@@ -939,39 +853,6 @@
                 }
                 if (info.VisionDescription) {
                     document.getElementById('vision-description').textContent = info.VisionDescription;
-                }
-            }
-        }
-
-        async function updateResults() {
-            const results = await fetchSheetData(GOOGLE_SHEETS_CONFIG.SHEETS.RESULTS);
-            const resultsGrid = document.getElementById('results-grid');
-            
-            if (results.length > 0) {
-                const activeResults = results.filter(result => result.Status === 'Active');
-                
-                if (activeResults.length > 0) {
-                    const resultsHTML = activeResults.map(result => `
-                        <div class="result-card reveal">
-                            <h3>${result.Class} Results</h3>
-                            <div class="result-placeholder">
-                                <span style="font-size: 1.1rem;">📊 ${result.Achievement}</span>
-                            </div>
-                            <p>${result.Description}</p>
-                        </div>
-                    `).join('');
-                    
-                    resultsGrid.innerHTML = resultsHTML;
-                } else {
-                    resultsGrid.innerHTML = `
-                        <div class="result-card">
-                            <h3>Results Coming Soon</h3>
-                            <div class="result-placeholder">
-                                <span style="font-size: 1.1rem;">📊 Check back later for updates</span>
-                            </div>
-                            <p>Our latest academic results will be published here soon.</p>
-                        </div>
-                    `;
                 }
             }
         }
@@ -1049,8 +930,7 @@
             debugLog('API connection successful - fetching data');
             await Promise.all([
                 updateNotices(),
-                updateSchoolInfo(),
-                updateResults()
+                updateSchoolInfo()
             ]);
             
             debugLog('Data initialization complete');
@@ -1068,16 +948,6 @@
                         <strong>Admissions Open</strong><br>
                         Nursery 2025-2026 session applications now being accepted
                     </div>
-                </div>
-            `;
-            
-            document.getElementById('results-grid').innerHTML = `
-                <div class="result-card">
-                    <h3>Class XII Results</h3>
-                    <div class="result-placeholder">
-                        <span style="font-size: 1.1rem;">📊 Outstanding Performance</span>
-                    </div>
-                    <p>Exceptional results with 98% pass rate and numerous distinctions</p>
                 </div>
             `;
         }
