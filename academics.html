@@ -274,93 +274,6 @@
             left: -1.5rem;
         }
 
-        /* Subject Offerings Section */
-        .subjects-section {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(254, 247, 230, 0.9));
-            position: relative;
-        }
-
-        .stream-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .stream-tab {
-            background: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-subtle);
-            border: 2px solid transparent;
-        }
-
-        .stream-tab.active, .stream-tab:hover {
-            background: linear-gradient(135deg, var(--saffron-primary), var(--saffron-deep));
-            color: white;
-            border-color: var(--saffron-primary);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .stream-content {
-            display: none;
-        }
-
-        .stream-content.active {
-            display: block;
-            animation: fadeIn 0.6s ease;
-        }
-
-        .subject-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .subject-card {
-            background: white;
-            border-radius: 16px;
-            padding: 1.8rem;
-            box-shadow: var(--shadow-subtle);
-            transition: all 0.3s ease;
-            border-left: 4px solid var(--saffron-primary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .subject-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-medium);
-            border-left-color: var(--maroon-primary);
-        }
-
-        .subject-card h4 {
-            font-family: 'Playfair Display', serif;
-            color: var(--maroon-primary);
-            margin-bottom: 0.8rem;
-            font-size: 1.3rem;
-        }
-
-        .subject-card p {
-            color: var(--text-medium);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .subject-card .subject-icon {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 2.5rem;
-            color: rgba(255, 140, 0, 0.1);
-            z-index: 1;
-        }
-
         /* Methodology Section */
         .methodology-section {
             padding: 6rem 0;
@@ -475,74 +388,6 @@
             justify-content: center;
             font-weight: bold;
             flex-shrink: 0;
-        }
-
-        /* Academic Calendar Section */
-        .calendar-section {
-            padding: 6rem 0;
-            position: relative;
-        }
-
-        .calendar-container {
-            background: white;
-            border-radius: 24px;
-            padding: 3rem;
-            box-shadow: var(--shadow-medium);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--cream);
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2rem;
-        }
-
-        .month-card {
-            background: var(--cream);
-            border-radius: 16px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .month-card:hover {
-            transform: translateY(-5px);
-            background: linear-gradient(135deg, var(--cream), var(--warm-white));
-        }
-
-        .month-card h4 {
-            font-family: 'Playfair Display', serif;
-            color: var(--maroon-primary);
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(139, 0, 0, 0.1);
-        }
-
-        .month-card ul {
-            margin-left: 1rem;
-        }
-
-        .month-card li {
-            margin-bottom: 0.7rem;
-            font-size: 0.95rem;
-            position: relative;
-        }
-
-        .month-card li::before {
-            content: "•";
-            color: var(--saffron-primary);
-            font-weight: bold;
-            position: absolute;
-            left: -1rem;
         }
 
         /* CTA Section */
@@ -758,7 +603,7 @@
                 <div class="academics-hero-content">
                     <div class="academics-hero-text reveal">
                         <h1>Excellence in <span class="highlight">Academic</span> Pursuits</h1>
-                        <p class="subtitle">Our CBSE-affiliated curriculum is designed to nurture critical thinking, creativity, and character development. We provide a holistic educational experience that prepares students for global citizenship.</p>
+                        <p class="subtitle">Our MP Board affiliated curriculum is designed to nurture critical thinking, creativity, and character development. We provide a holistic educational experience that prepares students for global citizenship.</p>
                     </div>
                 </div>
             </div>
@@ -767,151 +612,35 @@
         <section class="curriculum-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2>CBSE Curriculum Framework</h2>
-                    <p>A comprehensive educational approach aligned with national standards</p>
+                    <h2>MP Board Curriculum Framework</h2>
+                    <p>A comprehensive educational approach aligned with state standards</p>
                 </div>
                 
                 <div class="curriculum-container">
                     <div class="curriculum-info reveal">
                         <h3><i class="fas fa-book-open"></i> Curriculum Overview</h3>
-                        <p>Our academic program follows the CBSE curriculum, enhanced with value-added components to develop well-rounded individuals:</p>
+                        <p>Our academic program follows the MP Board curriculum, enhanced with value-added components to develop well-rounded individuals:</p>
                         <ul>
-                            <li>Nursery to Grade XII education following CBSE guidelines</li>
-                            <li>Continuous and Comprehensive Evaluation (CCE) system</li>
-                            <li>Emphasis on holistic development through co-scholastic activities</li>
-                            <li>Integration of technology in teaching and learning processes</li>
-                            <li>Special focus on environmental education and sustainability</li>
-                            <li>Value education integrated across all subjects</li>
+                            <li>Classes I to XII education following MP Board guidelines</li>
+                            <li>Hindi and English medium instruction available</li>
+                            <li>Emphasis on holistic development through co-curricular activities</li>
+                            <li>Integration of moral values and ethical education</li>
+                            <li>Special focus on character building and discipline</li>
+                            <li>Value education integrated across all subjects as per Sikh principles</li>
                         </ul>
                     </div>
                     
                     <div class="curriculum-info reveal">
                         <h3><i class="fas fa-graduation-cap"></i> Curriculum Highlights</h3>
-                        <p>Our enhanced CBSE curriculum includes distinctive features that set us apart:</p>
+                        <p>Our enhanced MP Board curriculum includes distinctive features that set us apart:</p>
                         <ul>
-                            <li>STEM-focused learning with dedicated innovation labs</li>
-                            <li>Language acquisition programs in French and Sanskrit</li>
-                            <li>Financial literacy and entrepreneurship modules</li>
-                            <li>Digital citizenship and cyber safety curriculum</li>
-                            <li>Project-based learning across all grade levels</li>
-                            <li>Career counseling from Grade IX onwards</li>
+                            <li>Bilingual education in Hindi and English medium</li>
+                            <li>Strong foundation in Mathematics and Science</li>
+                            <li>Comprehensive language development programs</li>
+                            <li>Cultural and traditional knowledge integration</li>
+                            <li>Regular assessment and evaluation system</li>
+                            <li>Career guidance and counseling from higher classes</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="subjects-section">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2>Subject Offerings</h2>
-                    <p>Comprehensive academic streams tailored to student interests and abilities</p>
-                </div>
-                
-                <div class="stream-tabs">
-                    <div class="stream-tab active" data-stream="primary">Primary (I-V)</div>
-                    <div class="stream-tab" data-stream="middle">Middle (VI-VIII)</div>
-                    <div class="stream-tab" data-stream="secondary">Secondary (IX-X)</div>
-                    <div class="stream-tab" data-stream="senior">Senior Secondary (XI-XII)</div>
-                </div>
-                
-                <div class="stream-content active" id="primary-content">
-                    <div class="subject-grid">
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-book"></i></div>
-                            <h4>English Language</h4>
-                            <p>Developing communication skills through reading, writing, listening and speaking activities.</p>
-                        </div>
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-calculator"></i></div>
-                            <h4>Mathematics</h4>
-                            <p>Building foundational numeracy skills through practical applications and problem-solving.</p>
-                        </div>
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-seedling"></i></div>
-                            <h4>Environmental Studies</h4>
-                            <p>Exploring nature, community, and scientific concepts through hands-on activities.</p>
-                        </div>
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-paint-brush"></i></div>
-                            <h4>Art & Craft</h4>
-                            <p>Encouraging creativity through various art forms and craft techniques.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="stream-content" id="middle-content">
-                    <div class="subject-grid">
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-atom"></i></div>
-                            <h4>Science</h4>
-                            <p>Physics, Chemistry, and Biology fundamentals with practical experiments.</p>
-                        </div>
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-globe-asia"></i></div>
-                            <h4>Social Science</h4>
-                            <p>History, Geography, Civics and Economics integrated for holistic understanding.</p>
-                        </div>
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-laptop-code"></i></div>
-                            <h4>Computer Science</h4>
-                            <p>Introduction to programming, digital literacy, and computational thinking.</p>
-                        </div>
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-dumbbell"></i></div>
-                            <h4>Physical Education</h4>
-                            <p>Developing physical fitness, sports skills, and understanding of health.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="stream-content" id="secondary-content">
-                    <div class="subject-grid">
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-flask"></i></div>
-                            <h4>Science Stream</h4>
-                            <p>Physics, Chemistry, Biology/Mathematics with advanced laboratory work.</p>
-                        </div>
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-chart-line"></i></div>
-                            <h4>Commerce Stream</h4>
-                            <p>Accountancy, Business Studies, Economics, and Applied Mathematics.</p>
-                        </div>
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-landmark"></i></div>
-                            <h4>Humanities Stream</h4>
-                            <p>History, Political Science, Geography, Psychology, and Sociology.</p>
-                        </div>
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-language"></i></div>
-                            <h4>Language Electives</h4>
-                            <p>Hindi, English, French, Sanskrit with literature and communication focus.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="stream-content" id="senior-content">
-                    <div class="subject-grid">
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-dna"></i></div>
-                            <h4>Medical Stream</h4>
-                            <p>Physics, Chemistry, Biology, English, and Psychology with NEET preparation.</p>
-                        </div>
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-microchip"></i></div>
-                            <h4>Engineering Stream</h4>
-                            <p>Physics, Chemistry, Mathematics, Computer Science with JEE preparation.</p>
-                        </div>
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-coins"></i></div>
-                            <h4>Commerce Stream</h4>
-                            <p>Accountancy, Business Studies, Economics, Mathematics, Entrepreneurship.</p>
-                        </div>
-                        <div class="subject-card reveal">
-                            <div class="subject-icon"><i class="fas fa-balance-scale"></i></div>
-                            <h4>Humanities Stream</h4>
-                            <p>History, Political Science, Psychology, Sociology, and Legal Studies.</p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1037,78 +766,6 @@
             </div>
         </section>
 
-        <section class="calendar-section">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2>Academic Calendar</h2>
-                    <p>Key dates and events for the current academic year</p>
-                </div>
-                
-                <div class="calendar-container reveal">
-                    <div class="calendar-header">
-                        <h3>2024-2025 Academic Year</h3>
-                        <div class="btn-secondary">Download Full Calendar</div>
-                    </div>
-                    
-                    <div class="calendar-grid">
-                        <div class="month-card">
-                            <h4>April 2024</h4>
-                            <ul>
-                                <li>Session begins - April 3</li>
-                                <li>Orientation for new students - April 5</li>
-                                <li>Parent-Teacher meeting - April 15</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="month-card">
-                            <h4>May 2024</h4>
-                            <ul>
-                                <li>Summer break begins - May 10</li>
-                                <li>Summer camp registration - May 15</li>
-                                <li>Summer camp begins - May 20</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="month-card">
-                            <h4>June 2024</h4>
-                            <ul>
-                                <li>Summer camp continues</li>
-                                <li>Teachers' workshop - June 10-12</li>
-                                <li>Summer break ends - June 25</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="month-card">
-                            <h4>July 2024</h4>
-                            <ul>
-                                <li>Classes resume - July 1</li>
-                                <li>First unit tests - July 15-20</li>
-                                <li>Annual sports day - July 28</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="month-card">
-                            <h4>August 2024</h4>
-                            <ul>
-                                <li>Independence Day celebrations - Aug 15</li>
-                                <li>Science exhibition - Aug 20-22</li>
-                                <li>Mid-term break - Aug 26-30</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="month-card">
-                            <h4>September 2024</h4>
-                            <ul>
-                                <li>Teachers' Day - Sept 5</li>
-                                <li>Half-yearly examinations - Sept 15-25</li>
-                                <li>PTA meeting - Sept 28</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section class="cta-section">
             <div class="container">
                 <div class="cta-content reveal">
@@ -1136,8 +793,8 @@
                 <div class="footer-section">
                     <h3>Contact Information</h3>
                     <p>Shri Guru Nanak Mission Girls High Secondary School</p>
-                    <p>Established 1870 | CBSE Affiliated</p>
-                    <p>Jabalpur Diocese, CNI</p>
+                    <p>Founded 1959 | MP Board Affiliated</p>
+                    <p>Premnagar, Jabalpur</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
@@ -1146,8 +803,8 @@
                     <p>Student Portal • Parent Login</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Excellence Since 1870</h3>
-                    <p>153 years of educational excellence</p>
+                    <h3>Excellence Since 1959</h3>
+                    <p>Over 65 years of educational excellence</p>
                     <p>Nurturing leaders of tomorrow</p>
                     <p>Building character, inspiring dreams</p>
                 </div>
@@ -1201,26 +858,6 @@
                             block: 'start'
                         });
                     }
-                });
-            });
-            
-            // Stream tabs functionality
-            const streamTabs = document.querySelectorAll('.stream-tab');
-            const streamContents = document.querySelectorAll('.stream-content');
-            
-            streamTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // Remove active class from all tabs
-                    streamTabs.forEach(t => t.classList.remove('active'));
-                    // Add active class to clicked tab
-                    tab.classList.add('active');
-                    
-                    // Hide all content
-                    streamContents.forEach(content => content.classList.remove('active'));
-                    
-                    // Show corresponding content
-                    const streamId = tab.getAttribute('data-stream');
-                    document.getElementById(`${streamId}-content`).classList.add('active');
                 });
             });
         });
