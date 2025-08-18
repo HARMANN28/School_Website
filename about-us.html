@@ -483,6 +483,87 @@
             line-height: 1.7;
         }
 
+        /* Social Media Section */
+        .social-media-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(254, 247, 230, 0.9));
+            position: relative;
+        }
+
+        .social-media-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .social-media-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--maroon-primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .social-media-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--saffron-primary), var(--maroon-primary));
+            border-radius: 2px;
+        }
+
+        .social-media-content p {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        .social-media-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(135deg, #1877f2, #4267b2);
+            color: white;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-media-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .social-media-link:hover::before {
+            left: 100%;
+        }
+
+        .social-media-link:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .social-media-link i {
+            font-size: 2rem;
+        }
+
         /* CTA Section */
         .cta-section {
             padding: 6rem 0;
@@ -640,6 +721,10 @@
             }
             
             .section-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .social-media-content h2 {
                 font-size: 2.2rem;
             }
             
@@ -953,6 +1038,20 @@
                         <h3>Environmental Stewardship</h3>
                         <p>Sustainable practices and ecological awareness are integrated throughout our campus and curriculum.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="social-media-section">
+            <div class="container">
+                <div class="social-media-content reveal">
+                    <h2>Connect With Us</h2>
+                    <p>Stay updated with our latest news, events, and achievements by following us on social media. Join our vibrant online community and be part of our school's digital family!</p>
+                    
+                    <a href="https://m.facebook.com/61550107467870/" target="_blank" class="social-media-link">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>Visit Our Facebook Page</span>
+                    </a>
                 </div>
             </div>
         </section>
