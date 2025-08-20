@@ -531,13 +531,44 @@
         class EventsManager {
             constructor() {
                 this.eventsContainer = document.getElementById('eventsContainer');
+                this.maxEventsToShow = 4; // Maximum number of events to display
                 this.loadEvents();
+                
+                // Set up automatic refresh every hour to check for new events or expired ones
+                this.setupAutoRefresh();
+            }
+
+            setupAutoRefresh() {
+                // Refresh events every hour (3600000 ms)
+                setInterval(() => {
+                    this.loadEvents();
+                }, 3600000);
+                
+                // Also refresh at midnight to handle date changes
+                this.scheduleNextMidnightRefresh();
+            }
+
+            scheduleNextMidnightRefresh() {
+                const now = new Date();
+                const tomorrow = new Date(now);
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                tomorrow.setHours(0, 0, 0, 0);
+                
+                const msUntilMidnight = tomorrow.getTime() - now.getTime();
+                
+                setTimeout(() => {
+                    this.loadEvents();
+                    this.scheduleNextMidnightRefresh(); // Schedule the next midnight refresh
+                }, msUntilMidnight);
             }
 
             async loadEvents() {
                 try {
                     const events = await this.fetchEventsFromGoogleSheets();
-                    this.renderEvents(events);
+                    const upcomingEvents = this.filterUpcomingEvents(events);
+                    const sortedEvents = this.sortEventsByDate(upcomingEvents);
+                    const limitedEvents = this.limitEventsToShow(sortedEvents);
+                    this.renderEvents(limitedEvents);
                 } catch (error) {
                     console.error('Error loading events:', error);
                     this.renderError();
@@ -571,11 +602,160 @@
                 return events;
             }
 
+            parseDate(dateString) {
+                // Handle various date formats
+                const cleanDate = dateString.trim();
+                
+                // Try different date formats
+                const dateFormats = [
+                    // DD/MM/YYYY or DD-MM-YYYY
+                    /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/,
+                    // MM/DD/YYYY or MM-DD-YYYY
+                    /^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/,
+                    // YYYY/MM/DD or YYYY-MM-DD
+                    /^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/,
+                    // DD MMM YYYY (e.g., 15 Dec 2024)
+                    /^(\d{1,2})\s+(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{4})$/i,
+                    // MMM DD, YYYY (e.g., Dec 15, 2024)
+                    /^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2}),?\s+(\d{4})$/i
+                ];
+
+                // First, try the standard Date constructor
+                let parsedDate = new Date(cleanDate);
+                if (!isNaN(parsedDate.getTime())) {
+                    return parsedDate;
+                }
+
+                // Try DD/MM/YYYY format (common in many countries)
+                const ddmmyyyy = cleanDate.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
+                if (ddmmyyyy) {
+                    const day = parseInt(ddmmyyyy[1]);
+                    const month = parseInt(ddmmyyyy[2]);
+                    const year = parseInt(ddmmyyyy[3]);
+                    
+                    // Assume DD/MM/YYYY if day > 12, otherwise try both formats
+                    if (day > 12) {
+                        parsedDate = new Date(year, month - 1, day);
+                    } else if (month > 12) {
+                        parsedDate = new Date(year, day - 1, month);
+                    } else {
+                        // Ambiguous case - try DD/MM/YYYY first (European format)
+                        parsedDate = new Date(year, month - 1, day);
+                        if (isNaN(parsedDate.getTime())) {
+                            parsedDate = new Date(year, day - 1, month);
+                        }
+                    }
+                    
+                    if (!isNaN(parsedDate.getTime())) {
+                        return parsedDate;
+                    }
+                }
+
+                // Try YYYY-MM-DD or YYYY/MM/DD format
+                const yyyymmdd = cleanDate.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})$/);
+                if (yyyymmdd) {
+                    parsedDate = new Date(parseInt(yyyymmdd[1]), parseInt(yyyymmdd[2]) - 1, parseInt(yyyymmdd[3]));
+                    if (!isNaN(parsedDate.getTime())) {
+                        return parsedDate;
+                    }
+                }
+
+                // Try named month formats
+                const monthNames = {
+                    'jan': 0, 'january': 0,
+                    'feb': 1, 'february': 1,
+                    'mar': 2, 'march': 2,
+                    'apr': 3, 'april': 3,
+                    'may': 4,
+                    'jun': 5, 'june': 5,
+                    'jul': 6, 'july': 6,
+                    'aug': 7, 'august': 7,
+                    'sep': 8, 'september': 8,
+                    'oct': 9, 'october': 9,
+                    'nov': 10, 'november': 10,
+                    'dec': 11, 'december': 11
+                };
+
+                // DD MMM YYYY format
+                const ddmmmyyyy = cleanDate.match(/^(\d{1,2})\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s+(\d{4})$/i);
+                if (ddmmmyyyy) {
+                    const day = parseInt(ddmmmyyyy[1]);
+                    const month = monthNames[ddmmmyyyy[2].toLowerCase()];
+                    const year = parseInt(ddmmmyyyy[3]);
+                    parsedDate = new Date(year, month, day);
+                    if (!isNaN(parsedDate.getTime())) {
+                        return parsedDate;
+                    }
+                }
+
+                // MMM DD, YYYY format
+                const mmmddyyyy = cleanDate.match(/^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s+(\d{1,2}),?\s+(\d{4})$/i);
+                if (mmmddyyyy) {
+                    const month = monthNames[mmmddyyyy[1].toLowerCase()];
+                    const day = parseInt(mmmddyyyy[2]);
+                    const year = parseInt(mmmddyyyy[3]);
+                    parsedDate = new Date(year, month, day);
+                    if (!isNaN(parsedDate.getTime())) {
+                        return parsedDate;
+                    }
+                }
+
+                // If all parsing attempts fail, return null
+                console.warn(`Unable to parse date: ${dateString}`);
+                return null;
+            }
+
+            filterUpcomingEvents(events) {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // Set to start of today
+                
+                return events.filter(event => {
+                    const eventDate = this.parseDate(event.date);
+                    if (!eventDate) {
+                        console.warn(`Invalid date for event: ${event.title} - ${event.date}`);
+                        return false; // Exclude events with invalid dates
+                    }
+                    
+                    // Include events that are today or in the future
+                    return eventDate >= today;
+                }).map(event => ({
+                    ...event,
+                    parsedDate: this.parseDate(event.date)
+                }));
+            }
+
+            sortEventsByDate(events) {
+                return events.sort((a, b) => {
+                    if (!a.parsedDate && !b.parsedDate) return 0;
+                    if (!a.parsedDate) return 1;
+                    if (!b.parsedDate) return -1;
+                    return a.parsedDate.getTime() - b.parsedDate.getTime();
+                });
+            }
+
+            limitEventsToShow(events) {
+                return events.slice(0, this.maxEventsToShow);
+            }
+
+            formatDateForDisplay(dateString, parsedDate) {
+                if (parsedDate) {
+                    // Format the date in a user-friendly way
+                    const options = { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric',
+                        weekday: 'long'
+                    };
+                    return parsedDate.toLocaleDateString('en-US', options);
+                }
+                return dateString; // Fallback to original string if parsing failed
+            }
+
             renderEvents(events) {
                 this.eventsContainer.innerHTML = '';
                 
                 if (events.length === 0) {
-                    this.eventsContainer.innerHTML = '<div class="error-container">No events found.</div>';
+                    this.eventsContainer.innerHTML = '<div class="error-container">No upcoming events scheduled.</div>';
                     return;
                 }
 
@@ -599,7 +779,9 @@
                 cardElement.setAttribute('data-rotate-amplitude', '25');
                 cardElement.setAttribute('data-show-mobile-warning', 'true');
                 cardElement.setAttribute('data-show-tooltip', 'true');
-                cardElement.setAttribute('data-caption-text', `${event.title} - ${event.date}`);
+                
+                const displayDate = this.formatDateForDisplay(event.date, event.parsedDate);
+                cardElement.setAttribute('data-caption-text', `${event.title} - ${displayDate}`);
 
                 cardElement.innerHTML = `
                     <div class="tilted-card-mobile-alert">
@@ -614,7 +796,7 @@
                         
                         <div class="tilted-card-overlay">
                             <div class="event-title">${event.title}</div>
-                            <div class="event-date">${event.date}</div>
+                            <div class="event-date">${displayDate}</div>
                             <div class="event-description">${event.description}</div>
                         </div>
                     </div>
@@ -627,8 +809,8 @@
                 this.eventsContainer.innerHTML = `
                     <div class="error-container">
                         <div>
-                            <h3>No Upcoming Events</h3>
-                            
+                            <h3>Unable to Load Events</h3>
+                            <p>Please check back later for upcoming events.</p>
                         </div>
                     </div>
                 `;
