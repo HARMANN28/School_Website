@@ -337,6 +337,26 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
         }
 
+        /* Loading state */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            font-size: 1.2rem;
+            color: var(--text-medium);
+        }
+
+        .error-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            font-size: 1.2rem;
+            color: var(--maroon-primary);
+            text-align: center;
+        }
+
         /* Footer */
         footer {
             background: var(--text-dark);
@@ -461,179 +481,8 @@
         <p>Explore our calendar of activities and join us in these memorable experiences</p>
     </div>
 
-    <div class="events-container">
-        <div class="tilted-card-figure" 
-             data-container-height="350px" 
-             data-container-width="100%" 
-             data-image-height="350px" 
-             data-image-width="300px"
-             data-scale-on-hover="1.1"
-             data-rotate-amplitude="25"
-             data-show-mobile-warning="true"
-             data-show-tooltip="true"
-             data-caption-text="Annual Science Fair - March 15th">
-            
-            <div class="tilted-card-mobile-alert">
-                Move cursor to see 3D effect
-            </div>
-            
-            <div class="tilted-card-inner">
-                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=400&fit=crop" 
-                     alt="Science Fair" 
-                     class="tilted-card-img">
-                
-                <div class="tilted-card-overlay">
-                    <div class="event-title">Annual Science Fair</div>
-                    <div class="event-date">March 15, 2025</div>
-                    <div class="event-description">Join us for our biggest science event of the year featuring innovative projects from students across all grades.</div>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="tilted-card-figure" 
-             data-container-height="350px" 
-             data-container-width="100%" 
-             data-image-height="350px" 
-             data-image-width="300px"
-             data-scale-on-hover="1.1"
-             data-rotate-amplitude="25"
-             data-show-mobile-warning="true"
-             data-show-tooltip="true"
-             data-caption-text="Sports Day Championship - April 20th">
-            
-            <div class="tilted-card-mobile-alert">
-                Move cursor to see 3D effect
-            </div>
-            
-            <div class="tilted-card-inner">
-                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=400&fit=crop" 
-                     alt="Sports Day" 
-                     class="tilted-card-img">
-                
-                <div class="tilted-card-overlay">
-                    <div class="event-title">Sports Day Championship</div>
-                    <div class="event-date">April 20, 2025</div>
-                    <div class="event-description">Annual athletic competition featuring track and field events, team sports, and fun activities for all students.</div>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="tilted-card-figure" 
-             data-container-height="350px" 
-             data-container-width="100%" 
-             data-image-height="350px" 
-             data-image-width="300px"
-             data-scale-on-hover="1.1"
-             data-rotate-amplitude="25"
-             data-show-mobile-warning="true"
-             data-show-tooltip="true"
-             data-caption-text="Cultural Festival - May 10th">
-            
-            <div class="tilted-card-mobile-alert">
-                Move cursor to see 3D effect
-            </div>
-            
-            <div class="tilted-card-inner">
-                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=400&fit=crop" 
-                     alt="Cultural Festival" 
-                     class="tilted-card-img">
-                
-                <div class="tilted-card-overlay">
-                    <div class="event-title">Cultural Festival</div>
-                    <div class="event-date">May 10, 2025</div>
-                    <div class="event-description">Celebrate diversity with music, dance, food, and art from cultures around the world.</div>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="tilted-card-figure" 
-             data-container-height="350px" 
-             data-container-width="100%" 
-             data-image-height="350px" 
-             data-image-width="300px"
-             data-scale-on-hover="1.1"
-             data-rotate-amplitude="25"
-             data-show-mobile-warning="true"
-             data-show-tooltip="true"
-             data-caption-text="Graduation Ceremony - June 5th">
-            
-            <div class="tilted-card-mobile-alert">
-                Move cursor to see 3D effect
-            </div>
-            
-            <div class="tilted-card-inner">
-                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=400&fit=crop" 
-                     alt="Graduation" 
-                     class="tilted-card-img">
-                
-                <div class="tilted-card-overlay">
-                    <div class="event-title">Graduation Ceremony</div>
-                    <div class="event-date">June 5, 2025</div>
-                    <div class="event-description">Join us in celebrating the achievements of our graduating class of 2025.</div>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="tilted-card-figure" 
-             data-container-height="350px" 
-             data-container-width="100%" 
-             data-image-height="350px" 
-             data-image-width="300px"
-             data-scale-on-hover="1.1"
-             data-rotate-amplitude="25"
-             data-show-mobile-warning="true"
-             data-show-tooltip="true"
-             data-caption-text="Art Exhibition - March 25th">
-            
-            <div class="tilted-card-mobile-alert">
-                Move cursor to see 3D effect
-            </div>
-            
-            <div class="tilted-card-inner">
-                <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400&h=400&fit=crop" 
-                     alt="Art Exhibition" 
-                     class="tilted-card-img">
-                
-                <div class="tilted-card-overlay">
-                    <div class="event-title">Student Art Exhibition</div>
-                    <div class="event-date">March 25, 2025</div>
-                    <div class="event-description">Showcase of creative works by our talented art students including paintings, sculptures, and digital art.</div>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="tilted-card-figure" 
-             data-container-height="350px" 
-             data-container-width="100%" 
-             data-image-height="350px" 
-             data-image-width="300px"
-             data-scale-on-hover="1.1"
-             data-rotate-amplitude="25"
-             data-show-mobile-warning="true"
-             data-show-tooltip="true"
-             data-caption-text="Music Concert - April 8th">
-            
-            <div class="tilted-card-mobile-alert">
-                Move cursor to see 3D effect
-            </div>
-            
-            <div class="tilted-card-inner">
-                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop" 
-                     alt="Music Concert" 
-                     class="tilted-card-img">
-                
-                <div class="tilted-card-overlay">
-                    <div class="event-title">Spring Music Concert</div>
-                    <div class="event-date">April 8, 2025</div>
-                    <div class="event-description">An evening of beautiful music featuring our school orchestra, choir, and individual performers.</div>
-                </div>
-            </div>
-        </div>
+    <div class="events-container" id="eventsContainer">
+        <div class="loading-container">Loading events...</div>
     </div>
 
     <footer>
@@ -669,6 +518,127 @@
     </footer>
 
     <script>
+        // Google Sheets Configuration
+        const GOOGLE_SHEETS_CONFIG = {
+            // Replace with your Google Sheets ID
+            spreadsheetId: '1M947pksberQ9C9JiW9XqHClVLs0Z1SKJUdhfZ_XyAv0',
+            // Replace with your Google Sheets API Key
+            apiKey: 'AIzaSyCLZPEfI5KbYuooE3FLXmti_8tI7BA6jFA',
+            // Sheet name (tab name in your Google Sheet)
+            sheetName: 'Events'
+        };
+
+        class EventsManager {
+            constructor() {
+                this.eventsContainer = document.getElementById('eventsContainer');
+                this.loadEvents();
+            }
+
+            async loadEvents() {
+                try {
+                    const events = await this.fetchEventsFromGoogleSheets();
+                    this.renderEvents(events);
+                } catch (error) {
+                    console.error('Error loading events:', error);
+                    this.renderError();
+                }
+            }
+
+            async fetchEventsFromGoogleSheets() {
+                const { spreadsheetId, apiKey, sheetName } = GOOGLE_SHEETS_CONFIG;
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`;
+                
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data from Google Sheets');
+                }
+                
+                const data = await response.json();
+                const rows = data.values;
+                
+                if (!rows || rows.length < 2) {
+                    throw new Error('No data found in the sheet');
+                }
+                
+                // Skip header row and convert to objects
+                const events = rows.slice(1).map(row => ({
+                    title: row[0] || '',
+                    date: row[1] || '',
+                    description: row[2] || '',
+                    imageUrl: row[3] || 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=400&fit=crop'
+                })).filter(event => event.title && event.date); // Filter out empty rows
+                
+                return events;
+            }
+
+            renderEvents(events) {
+                this.eventsContainer.innerHTML = '';
+                
+                if (events.length === 0) {
+                    this.eventsContainer.innerHTML = '<div class="error-container">No events found.</div>';
+                    return;
+                }
+
+                events.forEach(event => {
+                    const eventElement = this.createEventCard(event);
+                    this.eventsContainer.appendChild(eventElement);
+                });
+
+                // Initialize tilted card effects after rendering
+                this.initializeTiltedCards();
+            }
+
+            createEventCard(event) {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'tilted-card-figure';
+                cardElement.setAttribute('data-container-height', '350px');
+                cardElement.setAttribute('data-container-width', '100%');
+                cardElement.setAttribute('data-image-height', '350px');
+                cardElement.setAttribute('data-image-width', '300px');
+                cardElement.setAttribute('data-scale-on-hover', '1.1');
+                cardElement.setAttribute('data-rotate-amplitude', '25');
+                cardElement.setAttribute('data-show-mobile-warning', 'true');
+                cardElement.setAttribute('data-show-tooltip', 'true');
+                cardElement.setAttribute('data-caption-text', `${event.title} - ${event.date}`);
+
+                cardElement.innerHTML = `
+                    <div class="tilted-card-mobile-alert">
+                        Move cursor to see 3D effect
+                    </div>
+                    
+                    <div class="tilted-card-inner">
+                        <img src="${event.imageUrl}" 
+                             alt="${event.title}" 
+                             class="tilted-card-img"
+                             onerror="this.src='https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=400&fit=crop'">
+                        
+                        <div class="tilted-card-overlay">
+                            <div class="event-title">${event.title}</div>
+                            <div class="event-date">${event.date}</div>
+                            <div class="event-description">${event.description}</div>
+                        </div>
+                    </div>
+                `;
+
+                return cardElement;
+            }
+
+            renderError() {
+                this.eventsContainer.innerHTML = `
+                    <div class="error-container">
+                        <div>
+                            <h3>Unable to load events</h3>
+                            <p>Please check your Google Sheets configuration and try again.</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            initializeTiltedCards() {
+                new TiltedCardManager();
+            }
+        }
+
         class TiltedCardManager {
             constructor() {
                 this.springValues = {
@@ -811,7 +781,7 @@
 
         // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            new TiltedCardManager();
+            new EventsManager();
             
             // Header scroll effect
             window.addEventListener('scroll', () => {
