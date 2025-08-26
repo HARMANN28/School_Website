@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academics - Shri Guru Nanak Mission Girls High Secondary School</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Academics - SGNMGHS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         :root {
             --saffron-light: #ff9933;
@@ -116,6 +118,14 @@
         }
 
         .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-menu a.active {
+            color: var(--maroon-primary);
+        }
+
+        .nav-menu a.active::after {
             width: 100%;
         }
 
@@ -274,6 +284,182 @@
             left: -1.5rem;
         }
 
+        /* --- NEW: Fee Structure Section --- */
+        .fee-structure-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(254, 247, 230, 0.9));
+        }
+
+        .fee-structure-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .fee-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.4s ease;
+            text-align: center;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .fee-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .fee-image-wrapper {
+            width: 100%;
+            margin-bottom: 1.5rem;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease;
+        }
+
+        .fee-card:hover .fee-image-wrapper {
+            transform: scale(1.03);
+        }
+
+        .fee-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            aspect-ratio: 1 / 1.414; /* A4 paper aspect ratio */
+            object-fit: cover;
+            background-color: var(--cream);
+        }
+
+        .fee-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--maroon-primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-btn {
+            width: 80%;
+            justify-content: center;
+            gap: 0.8rem !important;
+        }
+
+        .download-btn i {
+            font-size: 1rem;
+        }
+        
+        .api-note {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 1rem;
+            background-color: var(--cream);
+            border-radius: 12px;
+            color: var(--text-medium);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid rgba(255, 153, 51, 0.2);
+        }
+
+        .api-note i {
+            color: var(--saffron-primary);
+            margin-right: 0.5rem;
+        }
+
+        /* Subject Offerings Section */
+        .subjects-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(254, 247, 230, 0.9));
+            position: relative;
+        }
+
+        .stream-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stream-tab {
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-subtle);
+            border: 2px solid transparent;
+        }
+
+        .stream-tab.active, .stream-tab:hover {
+            background: linear-gradient(135deg, var(--saffron-primary), var(--saffron-deep));
+            color: white;
+            border-color: var(--saffron-primary);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .stream-content {
+            display: none;
+        }
+
+        .stream-content.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .subject-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.8rem;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--saffron-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-medium);
+            border-left-color: var(--maroon-primary);
+        }
+
+        .subject-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--maroon-primary);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .subject-card p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .subject-card .subject-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2.5rem;
+            color: rgba(255, 140, 0, 0.1);
+            z-index: 1;
+        }
+
         /* Methodology Section */
         .methodology-section {
             padding: 6rem 0;
@@ -388,6 +574,74 @@
             justify-content: center;
             font-weight: bold;
             flex-shrink: 0;
+        }
+
+        /* Academic Calendar Section */
+        .calendar-section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .calendar-container {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: var(--shadow-medium);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--cream);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+
+        .month-card {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .month-card:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, var(--cream), var(--warm-white));
+        }
+
+        .month-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--maroon-primary);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(139, 0, 0, 0.1);
+        }
+
+        .month-card ul {
+            margin-left: 1rem;
+        }
+
+        .month-card li {
+            margin-bottom: 0.7rem;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .month-card li::before {
+            content: "•";
+            color: var(--saffron-primary);
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
         }
 
         /* CTA Section */
@@ -540,6 +794,10 @@
                 padding: 0 1rem;
             }
             
+            header {
+                padding: 0.5rem 0;
+            }
+            
             .header-content {
                 flex-direction: column;
                 gap: 1rem;
@@ -549,6 +807,7 @@
                 flex-wrap: wrap;
                 gap: 1.5rem;
                 justify-content: center;
+                padding-bottom: 0.5rem;
             }
 
             .academics-hero-text h1 {
@@ -588,9 +847,9 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about-us.html">About Us</a></li>
                         <li><a href="admissions.html">Admissions</a></li>
-                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="#" class="active">Academics</a></li>
                         <li><a href="events.html">Events</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -603,7 +862,7 @@
                 <div class="academics-hero-content">
                     <div class="academics-hero-text reveal">
                         <h1>Excellence in <span class="highlight">Academic</span> Pursuits</h1>
-                        <p class="subtitle">Our MP Board affiliated curriculum is designed to nurture critical thinking, creativity, and character development. We provide a holistic educational experience that prepares students for global citizenship.</p>
+                        <p class="subtitle">Our CBSE-affiliated curriculum is designed to nurture critical thinking, creativity, and character development. We provide a holistic educational experience that prepares students for global citizenship.</p>
                     </div>
                 </div>
             </div>
@@ -612,35 +871,181 @@
         <section class="curriculum-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2>MP Board Curriculum Framework</h2>
-                    <p>A comprehensive educational approach aligned with state standards</p>
+                    <h2>CBSE Curriculum Framework</h2>
+                    <p>A comprehensive educational approach aligned with national standards</p>
                 </div>
                 
                 <div class="curriculum-container">
                     <div class="curriculum-info reveal">
                         <h3><i class="fas fa-book-open"></i> Curriculum Overview</h3>
-                        <p>Our academic program follows the MP Board curriculum, enhanced with value-added components to develop well-rounded individuals:</p>
+                        <p>Our academic program follows the CBSE curriculum, enhanced with value-added components to develop well-rounded individuals:</p>
                         <ul>
-                            <li>Classes I to XII education following MP Board guidelines</li>
-                            <li>Hindi and English medium instruction available</li>
-                            <li>Emphasis on holistic development through co-curricular activities</li>
-                            <li>Integration of moral values and ethical education</li>
-                            <li>Special focus on character building and discipline</li>
-                            <li>Value education integrated across all subjects as per Sikh principles</li>
+                            <li>Nursery to Grade XII education following CBSE guidelines</li>
+                            <li>Continuous and Comprehensive Evaluation (CCE) system</li>
+                            <li>Emphasis on holistic development through co-scholastic activities</li>
+                            <li>Integration of technology in teaching and learning processes</li>
+                            <li>Special focus on environmental education and sustainability</li>
+                            <li>Value education integrated across all subjects</li>
                         </ul>
                     </div>
                     
                     <div class="curriculum-info reveal">
                         <h3><i class="fas fa-graduation-cap"></i> Curriculum Highlights</h3>
-                        <p>Our enhanced MP Board curriculum includes distinctive features that set us apart:</p>
+                        <p>Our enhanced CBSE curriculum includes distinctive features that set us apart:</p>
                         <ul>
-                            <li>Bilingual education in Hindi and English medium</li>
-                            <li>Strong foundation in Mathematics and Science</li>
-                            <li>Comprehensive language development programs</li>
-                            <li>Cultural and traditional knowledge integration</li>
-                            <li>Regular assessment and evaluation system</li>
-                            <li>Career guidance and counseling from higher classes</li>
+                            <li>STEM-focused learning with dedicated innovation labs</li>
+                            <li>Language acquisition programs in French and Sanskrit</li>
+                            <li>Financial literacy and entrepreneurship modules</li>
+                            <li>Digital citizenship and cyber safety curriculum</li>
+                            <li>Project-based learning across all grade levels</li>
+                            <li>Career counseling from Grade IX onwards</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="fee-structure-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Download Fee Structure</h2>
+                    <p>Transparent and detailed fee information for the current academic year</p>
+                </div>
+                <div class="fee-structure-container">
+                    <div class="fee-card reveal">
+                        <div class="fee-image-wrapper">
+                            <img id="english-fee-img" src="https://via.placeholder.com/400x565.png?text=Loading+Fee+Structure..." alt="English Medium Fee Structure">
+                        </div>
+                        <h4>English Medium</h4>
+                        <a id="english-fee-download" href="#" class="btn-primary download-btn" target="_blank" rel="noopener noreferrer">
+                            <span>Download Now</span>
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                    <div class="fee-card reveal">
+                        <div class="fee-image-wrapper">
+                            <img id="hindi-fee-img" src="https://via.placeholder.com/400x565.png?text=Loading+Fee+Structure..." alt="Hindi Medium Fee Structure">
+                        </div>
+                        <h4>Hindi Medium</h4>
+                        <a id="hindi-fee-download" href="#" class="btn-primary download-btn" target="_blank" rel="noopener noreferrer">
+                            <span>Download Now</span>
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="subjects-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Subject Offerings</h2>
+                    <p>Comprehensive academic streams tailored to student interests and abilities</p>
+                </div>
+                
+                <div class="stream-tabs">
+                    <div class="stream-tab active" data-stream="primary">Primary (I-V)</div>
+                    <div class="stream-tab" data-stream="middle">Middle (VI-VIII)</div>
+                    <div class="stream-tab" data-stream="secondary">Secondary (IX-X)</div>
+                    <div class="stream-tab" data-stream="senior">Senior Secondary (XI-XII)</div>
+                </div>
+                
+                <div class="stream-content active" id="primary-content">
+                    <div class="subject-grid">
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-book"></i></div>
+                            <h4>English Language</h4>
+                            <p>Developing communication skills through reading, writing, listening and speaking activities.</p>
+                        </div>
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-calculator"></i></div>
+                            <h4>Mathematics</h4>
+                            <p>Building foundational numeracy skills through practical applications and problem-solving.</p>
+                        </div>
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-seedling"></i></div>
+                            <h4>Environmental Studies</h4>
+                            <p>Exploring nature, community, and scientific concepts through hands-on activities.</p>
+                        </div>
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-paint-brush"></i></div>
+                            <h4>Art & Craft</h4>
+                            <p>Encouraging creativity through various art forms and craft techniques.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stream-content" id="middle-content">
+                    <div class="subject-grid">
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-atom"></i></div>
+                            <h4>Science</h4>
+                            <p>Physics, Chemistry, and Biology fundamentals with practical experiments.</p>
+                        </div>
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-globe-asia"></i></div>
+                            <h4>Social Science</h4>
+                            <p>History, Geography, Civics and Economics integrated for holistic understanding.</p>
+                        </div>
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-laptop-code"></i></div>
+                            <h4>Computer Science</h4>
+                            <p>Introduction to programming, digital literacy, and computational thinking.</p>
+                        </div>
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-dumbbell"></i></div>
+                            <h4>Physical Education</h4>
+                            <p>Developing physical fitness, sports skills, and understanding of health.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stream-content" id="secondary-content">
+                    <div class="subject-grid">
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-flask"></i></div>
+                            <h4>Science Stream</h4>
+                            <p>Physics, Chemistry, Biology/Mathematics with advanced laboratory work.</p>
+                        </div>
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-chart-line"></i></div>
+                            <h4>Commerce Stream</h4>
+                            <p>Accountancy, Business Studies, Economics, and Applied Mathematics.</p>
+                        </div>
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-landmark"></i></div>
+                            <h4>Humanities Stream</h4>
+                            <p>History, Political Science, Geography, Psychology, and Sociology.</p>
+                        </div>
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-language"></i></div>
+                            <h4>Language Electives</h4>
+                            <p>Hindi, English, French, Sanskrit with literature and communication focus.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stream-content" id="senior-content">
+                    <div class="subject-grid">
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-dna"></i></div>
+                            <h4>Medical Stream</h4>
+                            <p>Physics, Chemistry, Biology, English, and Psychology with NEET preparation.</p>
+                        </div>
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-microchip"></i></div>
+                            <h4>Engineering Stream</h4>
+                            <p>Physics, Chemistry, Mathematics, Computer Science with JEE preparation.</p>
+                        </div>
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-coins"></i></div>
+                            <h4>Commerce Stream</h4>
+                            <p>Accountancy, Business Studies, Economics, Mathematics, Entrepreneurship.</p>
+                        </div>
+                        <div class="subject-card reveal">
+                            <div class="subject-icon"><i class="fas fa-balance-scale"></i></div>
+                            <h4>Humanities Stream</h4>
+                            <p>History, Political Science, Psychology, Sociology, and Legal Studies.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -766,6 +1171,78 @@
             </div>
         </section>
 
+        <section class="calendar-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2>Academic Calendar</h2>
+                    <p>Key dates and events for the current academic year</p>
+                </div>
+                
+                <div class="calendar-container reveal">
+                    <div class="calendar-header">
+                        <h3>2024-2025 Academic Year</h3>
+                        <div class="btn-secondary">Download Full Calendar</div>
+                    </div>
+                    
+                    <div class="calendar-grid">
+                        <div class="month-card">
+                            <h4>April 2024</h4>
+                            <ul>
+                                <li>Session begins - April 3</li>
+                                <li>Orientation for new students - April 5</li>
+                                <li>Parent-Teacher meeting - April 15</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="month-card">
+                            <h4>May 2024</h4>
+                            <ul>
+                                <li>Summer break begins - May 10</li>
+                                <li>Summer camp registration - May 15</li>
+                                <li>Summer camp begins - May 20</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="month-card">
+                            <h4>June 2024</h4>
+                            <ul>
+                                <li>Summer camp continues</li>
+                                <li>Teachers' workshop - June 10-12</li>
+                                <li>Summer break ends - June 25</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="month-card">
+                            <h4>July 2024</h4>
+                            <ul>
+                                <li>Classes resume - July 1</li>
+                                <li>First unit tests - July 15-20</li>
+                                <li>Annual sports day - July 28</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="month-card">
+                            <h4>August 2024</h4>
+                            <ul>
+                                <li>Independence Day celebrations - Aug 15</li>
+                                <li>Science exhibition - Aug 20-22</li>
+                                <li>Mid-term break - Aug 26-30</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="month-card">
+                            <h4>September 2024</h4>
+                            <ul>
+                                <li>Teachers' Day - Sept 5</li>
+                                <li>Half-yearly examinations - Sept 15-25</li>
+                                <li>PTA meeting - Sept 28</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="cta-section">
             <div class="container">
                 <div class="cta-content reveal">
@@ -773,9 +1250,13 @@
                     <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: var(--text-medium);">Join our vibrant learning community where tradition meets innovation. Discover how our academic programs can help your daughter achieve her dreams.</p>
                     
                     <div class="cta-buttons">
-                        <a href="admissions.html" class="btn-primary">
+                        <a href="#admissions" class="btn-primary">
                             <span>Schedule a Visit</span>
                             <span>→</span>
+                        </a>
+                        <a href="#admissions" class="btn-secondary">
+                            <span>Download Curriculum</span>
+                            <span>↓</span>
                         </a>
                     </div>
                 </div>
@@ -789,22 +1270,18 @@
                 <div class="footer-section">
                     <h3>Contact Information</h3>
                     <p>Shri Guru Nanak Mission Girls High Secondary School</p>
-                    <p>Established 1959 | MP Board Affiliated</p>
-                    <p>Premnagar, Jabalpur</p>
-                    <p>Phone no.0761-4020079, 0761-4020080</p>
-                    <p>Phone no.+91-9201155288</p>
+                    <p>Established 1870 | CBSE Affiliated</p>
+                    <p>Jabalpur Diocese, CNI</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Certifications</h3>
-                    <p>ISO Certified:9001:2015</p>
-                    <p>Dise Code Hindi Medium:23390225411</p>
-                    <p>Dise Code English Medium:23390225409</p>                    
-                    <p>School Code:712010</p>
-                    
+                    <h3>Quick Links</h3>
+                    <p>Admissions • Academic Calendar</p>
+                    <p>Fee Structure • Scholarships</p>
+                    <p>Student Portal • Parent Login</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Excellence Since 1959</h3>
-                    <p>65 years of educational excellence</p>
+                    <h3>Excellence Since 1870</h3>
+                    <p>153 years of educational excellence</p>
                     <p>Nurturing leaders of tomorrow</p>
                     <p>Building character, inspiring dreams</p>
                 </div>
@@ -816,51 +1293,112 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // --- GOOGLE DRIVE AUTOMATION SCRIPT ---
+        async function setupFeeStructureDownloads() {
+            // --- 1. PASTE YOUR CREDENTIALS HERE ---
+            const API_KEY = 'AIzaSyCLZPEfI5KbYuooE3FLXmti_8tI7BA6jFA';
+            const FOLDER_IDS = {
+                'eng': '1rb3hVPKOQWhNxAL4KjmZh7cX7P7wBARU',
+                'hindi': '1kzWRuV84dZKTq_FoFPklGBW8U0i1emyC'
+            };
+            // ------------------------------------
 
-            document.querySelectorAll('.reveal').forEach(el => {
-                observer.observe(el);
-            });
-            
-            // Header scroll effect
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const header = document.querySelector('header');
-                
-                if (scrollTop > 100) {
-                    header.style.background = 'rgba(255, 255, 255, 0.98)';
-                    header.style.boxShadow = '0 2px 20px rgba(139, 0, 0, 0.1)';
-                } else {
-                    header.style.background = 'rgba(255, 255, 255, 0.95)';
-                    header.style.boxShadow = 'none';
+            // Get elements from the page
+            const englishImg = document.getElementById('english-fee-img');
+            const englishDownload = document.getElementById('english-fee-download');
+            const hindiImg = document.getElementById('hindi-fee-img');
+            const hindiDownload = document.getElementById('hindi-fee-download');
+
+            // This helper function fetches the file ID directly from the Drive API
+            const getFileId = async (folderId) => {
+                // Stop if a placeholder ID is still being used
+                if (!folderId || folderId.includes('YOUR_')) {
+                    console.error('Folder ID is missing or is still a placeholder.');
+                    return null;
                 }
-            });
-            
-            // Smooth scrolling for navigation
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                
+                // Construct the query to search for files within the specified folder
+                const query = encodeURIComponent(`'${folderId}' in parents and trashed = false`);
+                const url = `https://www.googleapis.com/drive/v3/files?q=${query}&key=${API_KEY}`;
+
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error(`API error! status: ${response.status}`);
+                    
+                    const data = await response.json();
+                    if (data.files && data.files.length > 0) {
+                        // Return the ID of the first file found in the folder
+                        return data.files[0].id;
+                    } else {
+                        console.error(`No files found in folder: ${folderId}`);
+                        return null;
                     }
-                });
+                } catch (error) {
+                    console.error('Failed to fetch file ID directly:', error);
+                    return null;
+                }
+            };
+
+            // Get the file IDs for both folders
+            const englishFileId = await getFileId(FOLDER_IDS.eng);
+            const hindiFileId = await getFileId(FOLDER_IDS.hindi);
+
+            // Update the English medium card if a file ID was successfully found
+            if (englishFileId) {
+                englishImg.src = `https://drive.google.com/thumbnail?id=${englishFileId}`;
+                englishDownload.href = `https://drive.google.com/uc?export=download&id=${englishFileId}`;
+            }
+
+            // Update the Hindi medium card if a file ID was successfully found
+            if (hindiFileId) {
+                hindiImg.src = `https://drive.google.com/thumbnail?id=${hindiFileId}`;
+                hindiDownload.href = `https://drive.google.com/uc?export=download&id=${hindiFileId}`;
+            }
+        }
+        
+        // --- Standard Page Functions (Animations, Scrolling, etc.) ---
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.pageYOffset > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(139, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+        
+        document.querySelectorAll('a[href^="#"]:not(.download-btn)').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
-    </script>
+        
+        const streamTabs = document.querySelectorAll('.stream-tab');
+        const streamContents = document.querySelectorAll('.stream-content');
+        streamTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                streamTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                streamContents.forEach(content => content.classList.remove('active'));
+                document.getElementById(`${tab.dataset.stream}-content`).classList.add('active');
+            });
+        });
+        setupFeeStructureDownloads();
+    });
+</script>
 </body>
 </html>
