@@ -284,7 +284,7 @@
             left: -1.5rem;
         }
 
-        /* --- NEW: Fee Structure Section --- */
+        /* Fee Structure Section */
         .fee-structure-section {
             padding: 6rem 0;
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(254, 247, 230, 0.9));
@@ -323,6 +323,7 @@
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.4s ease;
+            cursor: pointer;
         }
 
         .fee-card:hover .fee-image-wrapper {
@@ -345,14 +346,47 @@
             margin-bottom: 1.5rem;
         }
 
-        .download-btn {
-            width: 80%;
+        .fee-buttons {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
             justify-content: center;
-            gap: 0.8rem !important;
         }
 
-        .download-btn i {
-            font-size: 1rem;
+        .download-btn, .view-btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            width: 48%;
+            justify-content: center;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, var(--saffron-primary), var(--saffron-deep));
+            color: white;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .view-btn {
+            background: transparent;
+            color: var(--maroon-primary);
+            border: 2px solid var(--maroon-primary);
+        }
+
+        .view-btn:hover {
+            background: var(--maroon-primary);
+            color: white;
+            transform: translateY(-2px);
         }
         
         .api-note {
@@ -371,6 +405,65 @@
         .api-note i {
             color: var(--saffron-primary);
             margin-right: 0.5rem;
+        }
+
+        /* Modal for viewing fee structure */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            animation: modalFade 0.3s;
+            border-radius: 16px;
+            background: var(--warm-white);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: var(--maroon-primary);
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .close-modal:hover {
+            color: var(--saffron-primary);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .modal-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--maroon-primary);
+        }
+
+        @keyframes modalFade {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
         }
 
         /* Subject Offerings Section */
@@ -822,6 +915,14 @@
                 flex-direction: column;
                 align-items: center;
             }
+            
+            .fee-buttons {
+                flex-direction: column;
+            }
+            
+            .download-btn, .view-btn {
+                width: 100%;
+            }
         }
 
         /* Scroll reveal animations */
@@ -913,28 +1014,53 @@
                 </div>
                 <div class="fee-structure-container">
                     <div class="fee-card reveal">
-                        <div class="fee-image-wrapper">
+                        <div class="fee-image-wrapper" id="english-fee-view">
                             <img id="english-fee-img" src="https://via.placeholder.com/400x565.png?text=Loading+Fee+Structure..." alt="English Medium Fee Structure">
                         </div>
                         <h4>English Medium</h4>
-                        <a id="english-fee-download" href="#" class="btn-primary download-btn" target="_blank" rel="noopener noreferrer">
-                            <span>Download Now</span>
-                            <i class="fas fa-download"></i>
-                        </a>
+                        <div class="fee-buttons">
+                            <a id="english-fee-download" href="#" class="download-btn" target="_blank" rel="noopener noreferrer">
+                                <span>Download</span>
+                                <i class="fas fa-download"></i>
+                            </a>
+                            <button class="view-btn" data-medium="english">
+                                <span>View</span>
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="fee-card reveal">
-                        <div class="fee-image-wrapper">
+                        <div class="fee-image-wrapper" id="hindi-fee-view">
                             <img id="hindi-fee-img" src="https://via.placeholder.com/400x565.png?text=Loading+Fee+Structure..." alt="Hindi Medium Fee Structure">
                         </div>
                         <h4>Hindi Medium</h4>
-                        <a id="hindi-fee-download" href="#" class="btn-primary download-btn" target="_blank" rel="noopener noreferrer">
-                            <span>Download Now</span>
-                            <i class="fas fa-download"></i>
-                        </a>
+                        <div class="fee-buttons">
+                            <a id="hindi-fee-download" href="#" class="download-btn" target="_blank" rel="noopener noreferrer">
+                                <span>Download</span>
+                                <i class="fas fa-download"></i>
+                            </a>
+                            <button class="view-btn" data-medium="hindi">
+                                <span>View</span>
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
                     </div>
+                </div>
+                <div class="api-note">
+                    <p><i class="fas fa-info-circle"></i> Fee structures are fetched directly from our Google Drive to ensure you always have the most up-to-date information.</p>
                 </div>
             </div>
         </section>
+
+        <!-- Modal for viewing fee structure -->
+        <div id="feeModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3 class="modal-title" id="modalTitle">Fee Structure</h3>
+                <img class="modal-image" id="modalImage" src="" alt="Fee Structure">
+            </div>
+        </div>
+
         <section class="subjects-section">
             <div class="container">
                 <div class="section-header reveal">
@@ -1349,14 +1475,66 @@
             if (englishFileId) {
                 englishImg.src = `https://drive.google.com/thumbnail?id=${englishFileId}`;
                 englishDownload.href = `https://drive.google.com/uc?export=download&id=${englishFileId}`;
+                document.getElementById('english-fee-view').setAttribute('data-fileid', englishFileId);
             }
 
             // Update the Hindi medium card if a file ID was successfully found
             if (hindiFileId) {
                 hindiImg.src = `https://drive.google.com/thumbnail?id=${hindiFileId}`;
                 hindiDownload.href = `https://drive.google.com/uc?export=download&id=${hindiFileId}`;
+                document.getElementById('hindi-fee-view').setAttribute('data-fileid', hindiFileId);
             }
         }
+        
+        // --- Modal functionality for viewing fee structure ---
+        const modal = document.getElementById('feeModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const closeModal = document.querySelector('.close-modal');
+        
+        // Function to open modal with specific fee structure
+        function openModal(medium, fileId) {
+            modalTitle.textContent = `${medium.charAt(0).toUpperCase() + medium.slice(1)} Medium Fee Structure`;
+            modalImage.src = `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+        
+        // Close modal when clicking the X
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        });
+        
+        // Close modal when clicking outside the content
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+            }
+        });
+        
+        // Add event listeners to view buttons
+        document.querySelectorAll('.view-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const medium = this.getAttribute('data-medium');
+                const fileId = document.getElementById(`${medium}-fee-view`).getAttribute('data-fileid');
+                if (fileId) {
+                    openModal(medium, fileId);
+                }
+            });
+        });
+        
+        // Add event listeners to image wrappers
+        document.querySelectorAll('.fee-image-wrapper').forEach(wrapper => {
+            wrapper.addEventListener('click', function() {
+                const fileId = this.getAttribute('data-fileid');
+                if (fileId) {
+                    const medium = this.id.split('-')[0];
+                    openModal(medium, fileId);
+                }
+            });
+        });
         
         // --- Standard Page Functions (Animations, Scrolling, etc.) ---
         
@@ -1397,6 +1575,7 @@
                 document.getElementById(`${tab.dataset.stream}-content`).classList.add('active');
             });
         });
+        
         setupFeeStructureDownloads();
     });
 </script>
